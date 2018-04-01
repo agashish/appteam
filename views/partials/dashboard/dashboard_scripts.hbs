@@ -1,0 +1,68 @@
+<!-- ================================================
+    Scripts
+    ================================================ -->
+    
+    <!-- jQuery Library --><script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/js/plugins/jquery-1.11.2.min.js"></script>    
+    <!--materialize js-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="/js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    
+    
+    <!-- Begin emoji-picker JavaScript -->
+    <script type="text/javascript" src="/lib/js/config.js"></script>
+    <script type="text/javascript" src="/lib/js/util.js"></script>
+    <script type="text/javascript" src="/lib/js/jquery.emojiarea.js"></script>
+    <script type="text/javascript" src="/lib/js/emoji-picker.js"></script>
+    <!-- End emoji-picker JavaScript -->
+
+	 <script>
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: '../lib/img/',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+    </script>
+
+    <!-- sparkline -->
+    <script type="text/javascript" src="/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="/js/plugins/sparkline/sparkline-script.js"></script>
+    
+   <script type="text/javascript" src="/js/editor.js"></script>
+		<script>
+		
+			$(document).ready(function() {
+				$("#txtEditor").Editor();
+			});
+		</script>
+
+    
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="/js/plugins.min.js"></script>
+    <!--custom-script.js - Add your own theme custom JS-->
+    <script type="text/javascript" src="/js/custom-script.js"></script>
+    <!-- Toast Notification -->
+    <script type="text/javascript">
+	
+    // Toast Notification
+    {{!-- $(window).load(function() {
+        setTimeout(function() {
+            Materialize.toast('<span>Hiya! I am a toast.</span>', 1500);
+        }, 1500);
+        setTimeout(function() {
+            Materialize.toast('<span>You can swipe me too!</span>', 3000);
+        }, 5000);
+        setTimeout(function() {
+            Materialize.toast('<span>You have new order.</span><a class="btn-flat yellow-text" href="#">Read<a>', 3000);
+        }, 15000);
+    }); --}}
+    </script>

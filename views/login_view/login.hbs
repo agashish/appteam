@@ -1,0 +1,132 @@
+
+  <div id="login-page" class="row">
+  <div class="row">
+          <div class="input-field col s12 center">
+            <img src="/images/logo.png" alt="" class=" responsive-img valign">
+          </div>
+        </div>
+        
+        
+    <div class="col s12 z-depth-4 card-panel">
+      <form class="login-form">
+        <div class="row margin">
+          <div class="input-field my_team_input_field col s12">
+            <i class="mdi-social-person-outline prefix"></i>
+            <input id="email" type="text">
+            <label for="username" class="center-align">Username</label>
+          </div>
+        </div>
+        <div class="row margin">
+          <div class="input-field my_team_input_field col s12">
+            <i class="mdi-action-lock-outline prefix"></i>
+            <input id="password" type="password">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6 m6 l6">
+           <div class="input-field col s12 m12 l12  login-text">
+              <input type="checkbox" id="remember-me" />
+              <label for="remember-me">Remember me</label>
+          </div>
+          </div>
+          <div class="input-field col s6 m6 l6">
+              <p class="margin right-align medium-small"><a href="user-forgot-password.html">Forgot password ?</a></p>
+          </div>          
+        </div>
+
+        
+        
+        
+        <div class="row">
+          <div class="input-field my_team_login col s12">
+            {{!-- <a href="index.html" class="btn my_team_login_btn waves-effect waves-light col s12">Login <img src="/images/login_icon.png" alt="login"/></a> --}}
+            <button class="btn my_team_login_btn waves-effect waves-light col s12" type="submit">Login <img src="images/login_icon.png" alt="login"/></button>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col s12">
+          		<div class="my_team_devidor">
+          		<hr>
+                <span>OR</span>
+                </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col s12">
+            <div class="my_team_social">
+            <p>Login with us</p>
+            <a href="#" class="fa fa-facebook"></a>
+			<a href="#" class="fa fa-twitter"></a>
+			<a href="#" class="fa fa-google"></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col s12">
+          		<div class="my_team_devidor">
+          		<hr>
+                <span>OR</span>
+                </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="my_team_register col s12">
+          	<p>If you are a new user Signup to avail all benefits</p>
+            <a href="/register" class="btn my_team_signup_btn waves-effect waves-light col s12">Sign Up <img src="/images/register_icon.png" alt="login"/></a>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+
+  <script>
+    
+    $(".login-form").validate({
+			rules: {
+        email:"required",
+          password: {
+              required: true,
+              minlength: 5
+          }
+			},
+			messages: {
+                email:"Please add a username",
+        password:{
+            required:"The password is required",
+            minlength:"The min is 5 characters"
+        }
+			},
+            submitHandler: function(form,event) {
+                event.preventDefault();
+                submitForm();
+            }
+		});
+
+    function submitForm(){
+
+      const userData = {
+        email: $('#email').val(),
+        password:$('#password').val() 
+      };
+
+      $.ajax({
+        type: "POST",
+        url: '/api/login',
+        data: JSON.stringify(userData),
+        contentType: 'application/json',
+        success: (response) => {          
+          window.location.href = '/dashboard'
+        },
+        error: (response) => {
+          console.log('error invoked')             
+        }
+      })
+    }
+
+</script>

@@ -1,0 +1,161 @@
+html,
+body {
+    height: 100%;
+}
+html {
+    display: table;
+    margin: auto;
+}
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+.fa {
+    padding: 20px;
+    font-size: 20px!important;
+    width: 60px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 3px;
+    border-radius: 50%;
+    height: 60px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+.my_team_social {
+    text-align: center;
+}
+.my_team_devidor {
+    position: relative;
+    text-align: center;
+}
+.my_team_devidor span {
+    position: absolute;
+    background: #fff;
+    top: -12px;
+    padding: 0px 6px;
+	margin-left: -12px;
+}
+.my_team_social p {
+    text-align: center;
+    font-size: 18px;
+    margin: 0px;
+    padding-bottom: 10px;
+}
+.my_team_register p {
+    text-align: center;
+    font-size: 15px;
+    margin: 0px;
+    padding-bottom: 10px;
+}
+.my_team_login_btn {
+    background-color: #7fc040;
+    border-radius: 60px;
+    padding: 10px!important;
+    height: auto;
+    font-size: 20px;
+}
+.my_team_signup_btn {
+    background-color: #1f6197;
+    border-radius: 60px;
+    padding: 10px!important;
+    height: auto;
+    font-size: 20px;
+}
+.my_team_signup_btn:hover {
+    background-color: #7fc040;
+    border-radius: 60px;
+    padding: 10px!important;
+    height: auto;
+    font-size: 20px;
+}
+.login-text.input-field label { left:0rem ;}
+.my_team_input_field {
+    border: solid 1px #b2b2b2;
+    border-radius: 60px;
+}
+.my_team_input_field input[type=text]{
+	 border:none;
+	 margin-bottom:0px;
+}
+.my_team_input_field input[type=email]{
+	 border:none;
+	 margin-bottom:0px;
+}
+.my_team_input_field input[type=password] {
+	 border:none;
+	 margin-bottom:0px;
+}
+.my_team_input_field input[type=text]:focus:not([readonly]) {
+	border-bottom:none;
+	box-shadow:none;
+}
+.my_team_input_field input[type=email]:focus:not([readonly]) {
+	border-bottom:none;
+	box-shadow:none;
+}
+.my_team_input_field input[type=password]:focus:not([readonly]) {
+	border-bottom:none;
+	box-shadow:none;
+}
+.login-form .medium-small {
+    font-size: 0.9rem;
+    margin: 0;
+    padding-top:8px;
+}
+.login-form .prefix {
+    background-color:#6f7989;
+    margin: 4px;
+    font-size: 24px!important;
+    color: #fff;
+    padding: 0px 6px;
+    border-radius: 30px;
+    left: 0px;
+	width:auto;
+}
+.my_team_login_btn img {
+    position: relative;
+    top: 4px;
+}
+.my_team_signup_btn img {
+    position: relative;
+    top: 4px;
+}
+.my_team_register {
+    padding: 0px!important;
+}
+.my_team_login {
+    padding: 0px!important;
+}
+
+
+@media screen and (max-width: 767px) {
+.login-form {
+    width:340px;
+}
+	
+.login-text	[type="checkbox"] + label { font-size: 0.9rem; }
+	
+}

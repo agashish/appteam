@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+    <title>My Team Project Management</title>
+
+    <!-- Favicons-->
+    <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+    <!-- For Windows Phone -->
+
+
+	
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	         
+	
+	
+    <!-- CORE CSS-->    
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/style.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="css/font-awesome.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <!-- Custome CSS-->    
+    <link href="css/custom/custom.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+	<link href="css/editor.css" type="text/css" rel="stylesheet"/>
+
+    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+    <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="js/plugins/jvectormap/jquery-jvectormap.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+	<!-- Begin emoji-picker Stylesheets -->
+    <link href="lib/css/emoji.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+ 
+    <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>        
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- End Page Loading -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START HEADER -->
+    <header id="header" class="page-topbar">
+        <!-- start header nav-->
+        <div class="navbar-fixed">
+            <nav class="navbar-color">
+                <div class="nav-wrapper">
+                   <div class="left">
+                    <ul>                      
+                      <li><h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                    </ul>
+                     
+                     <ul class="header-menu-wrapper">
+                     	<li class="team_icon"><a href="#">Team</a></li>
+                        <li class="type_icon"><a href="#">Types</a></li>
+                        <li class="projects_icon"><a href="#">Projects</a></li>
+                        <li class="working_icon"><a href="#">Working On</a></li>
+                        <li class="upcoming_icon"><a href="#">Upcoming</a></li>
+                     
+                     </ul>
+                    
+                    
+                   </div>
+                    
+                    <ul class="right hide-on-med-and-down">
+                    	<li>
+                        	<div class="header-search-wrapper hide-on-med-and-down">
+                        	<i class="mdi-action-search"></i>
+                        	<input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize"/>
+                    		</div>
+                    </li> 
+                    	
+  
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown"><i class="mdi-social-notifications"><small class="notification-badge">5</small></i>
+                        
+                        </a>
+                        </li>              
+                      
+                      <li><a href="javascript:void(0);" class=" waves-block waves-light translation-button"  data-activates="translation-dropdown"><span class="avatar-status avatar-online">
+                    <img src="images/avatar.jpg" alt="avatar"> Ashutosh
+                    <i></i>
+                  </span>
+</a>
+                        </li>
+                      
+                      
+                      
+                      
+                    </ul>
+                   
+                   
+                    
+                    <!-- translation-button -->
+                    <ul id="translation-dropdown" class="dropdown-content">
+                     <li><a href="#"><i class="mdi-action-face-unlock"></i> Profile</a>
+                            </li>
+                            <li><a href="#"><i class="mdi-action-settings"></i> Settings</a>
+                            </li>
+                            <li><a href="#"><i class="mdi-communication-live-help"></i> Help</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="mdi-action-lock-outline"></i> Lock</a>
+                            </li>
+                            <li><a href="#"><i class="mdi-hardware-keyboard-tab"></i> Logout</a>
+                            </li>
+                      
+                    </ul>
+                    <!-- notifications-dropdown -->
+                    
+                   
+                    <!-- notifications-dropdown -->
+                    <ul id="notifications-dropdown" class="dropdown-content">
+                      <li>
+                        <h5>NOTIFICATIONS <span class="new badge">5</span></h5>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="#!"><i class="mdi-action-add-shopping-cart"></i> A new order has been placed!</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">2 hours ago</time>
+                      </li>
+                      <li>
+                        <a href="#!"><i class="mdi-action-stars"></i> Completed the task</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">3 days ago</time>
+                      </li>
+                      <li>
+                        <a href="#!"><i class="mdi-action-settings"></i> Settings updated</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">4 days ago</time>
+                      </li>
+                      <li>
+                        <a href="#!"><i class="mdi-editor-insert-invitation"></i> Director meeting started</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">6 days ago</time>
+                      </li>
+                      <li>
+                        <a href="#!"><i class="mdi-action-trending-up"></i> Generate monthly report</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">1 week ago</time>
+                      </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- end header nav-->
+    </header>
+    <!-- END HEADER -->
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START MAIN -->
+    <div id="main">
+        <!-- START WRAPPER -->
+        <div class="wrapper">
+
+            <!-- START LEFT SIDEBAR NAV-->
+            <aside id="left-sidebar-nav">
+            	
+            
+            
+                <ul id="slide-out" class="side-nav fixed leftside-navigation">
+                <li class="no-padding filter_search" >
+                	<div class="header-search-filter">
+                        	<span><img src="images/filter_icon.png" alt="filter"/></span>
+                        	<input name="Search" class="header-search-input z-depth-2" placeholder="Filter" type="text">
+                    		</div>
+                
+                
+                </li>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-social-people-outline"></i>Team</a>
+                            <div class="collapsible-body">
+                                <ul class="left_panel_menu">
+                                    <li><a href="layout-fullscreen.html">Full Screen</a>
+                                    </li>
+                                    <li><a href="layout-horizontal-menu.html">Horizontal Menu</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-communication-email"></i>Type</a>
+                            <div class="collapsible-body">
+                                <ul class="left_panel_menu">
+                                    <li><a href="layout-fullscreen.html">Full Screen</a>
+                                    </li>
+                                    <li><a href="layout-horizontal-menu.html">Horizontal Menu</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                
+                
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i>Projects</a>
+                            <div class="collapsible-body">
+                                <ul class="left_panel_menu">     
+                                    <li><a href="user-profile-page.html">User Profile</a>
+                                    </li>                                   
+                                    <li><a href="user-login.html">Login</a>
+                                    </li>                                        
+                                    <li><a href="user-register.html">Register</a>
+                                    </li>
+                                    <li><a href="user-forgot-password.html">Forgot Password</a>
+                                    </li>
+                                    <li><a href="user-lock-screen.html">Lock Screen</a>
+                                    </li>                                        
+                                    <li><a href="user-session-timeout.html">Session Timeout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                
+                        
+                    </ul>
+                <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
+            </aside>
+            <!-- END LEFT SIDEBAR NAV-->
+
+            <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+            <!-- START CONTENT -->
+            <section id="content">
+
+                <!--start container-->
+                <div class="container">
+
+                  
+
+
+                    <!--card widgets start-->
+                    <div id="card-widgets">
+                        <div class="row">
+                            
+                             <div class="col s12 m12 l6 my_panel_box ">
+                                <div id="profile-card" class="card">
+                                    <div class="card-image waves-effect waves-block waves-light">
+                                        <img class="activator" src="images/user-bg.jpg" alt="user background">
+                                        <div class="a_task">aTasks</div>
+                                        
+                                        
+                                        
+                                    </div>
+                                    
+                                    <div class="row my_team_status" >
+                                    	<div class="col s2 m2 active_dropdown my_team_active">
+                                              <a class="dropdown-button " href="#" data-activates="dropdown1">Active</a>
+
+                                              <ul id="dropdown1" class="dropdown-content">
+                                                <li class="active-chart"><a href="#!">Active</a></li>
+                                                <li class="completed-chart"><a href="#!">Completed</a></li>
+                                                <li class="deferred-chart"><a href="#!">Deferred</a></li>
+                                                <li class="cancelled-chart"><a href="#!">Cancelled</a></li>
+                                              </ul>
+        
+                                        
+                                        
+                                        </div> 
+                                        
+                                        <div class="col s8 m8 active_dropdown my_team_all">
+                                        	<div class="my_team_all_active">
+                                              <a class="dropdown-button " href="#" data-activates="dropdown1">To All </a>
+                                              <ul id="dropdown1" class="dropdown-content">
+                                                <li class="active-chart"><a href="#!">Active</a></li>
+                                                <li class="completed-chart"><a href="#!">Completed</a></li>
+                                                <li class="deferred-chart"><a href="#!">Deferred</a></li>
+                                                <li class="cancelled-chart"><a href="#!">Cancelled</a></li>
+                                              </ul>
+                                            </div>  
+                                               <a class="dropdown-button " href="#" data-activates="dropdown1"><i class="fa fa-filter" aria-hidden="true"></i></a>
+        
+                                        
+                                        
+                                        </div> 
+                                        
+                                        <div class="col s2 m2 active_dropdown my_team_by_status">
+                                               <select>
+                                                  <option value = "0" selected>By Status</option>
+                                                  <option value = "1">Status</option>
+                                                  <option value = "2">Importance</option>
+                                                  <option value = "3">Title</option>
+                                                  <option value = "4">Priority</option>
+                                                  <option value = "5">Importance</option>
+                                                  <option value = "6">Date</option>
+                                               </select>   
+        
+                                        
+                                        
+                                        </div> 
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    </div>
+                                    
+                                    
+                                    
+                    
+                                    
+                                    <div class="card-content">
+                                            <ul class="collapsible row valign-wrapper" data-collapsible="accordion">
+                                              <li>
+                                               <span class="col s1 m1 collapsible-header"><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;</span> 
+                                                  <div class="col s11 m11">
+                                                    <div class="lighten-5 ">
+                                                      <div class="row valign-wrapper">
+                                                       
+                                                        <div class="col s1 my_team_image">
+                                                          <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                                                        </div>
+                                                        <div class="col s9">
+                                                          <span class="black-text">
+                                                            Franchise2Sell.com.au Dev
+                                                          </span>
+                                                          <ul class="m_user_name">
+                                                          	<li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                          
+                                                          </ul>
+                                                        </div>
+                                                        
+                                                        <div class="col s2">
+                                                        	<a href="#" class="datepicker"><span class="new"> <i class="fa fa-calendar" aria-hidden="true"></i> Oct 31 2017</span></a>
+                                                        </div>
+                                                        
+                                                      </div>
+                                                    </div>
+                                                  </div>            
+                                               
+                                                <div class="collapsible-body">
+                                                <!-- collapsible_box start here -->
+                                                <div class="collapsible_box">
+                                                  <div class="col s12 m12">
+                                                    <div class="lighten-5 ">
+                                                      <div class="row valign-wrapper">
+                                                        <div class="col s1 my_team_image">
+                                                          <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                                                        </div>
+                                                        <div class="col s10">
+                                                          <span class="black-text">
+                                                            Franchise2Sell.com.au Dev
+                                                          </span>
+                                                          <ul class="m_user_name">
+                                                          	<li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                          
+                                                          </ul>
+                                                        </div>
+                                                        
+                                                        <div class="col s2">
+                                                        	<a href="#" class="datepicker"><span class="new"> <i class="fa fa-calendar" aria-hidden="true"></i> Oct 31 2017</span></a>
+                                                        </div>
+                                                        
+                                                      </div>
+                                                    </div>
+                                                  </div>            
+                                               </div>
+                                                <!-- collapsible_box end here -->
+                                                
+                                                  <!-- collapsible_box start here -->
+                                                <div class="collapsible_box">
+                                                  <div class="col s12 m12">
+                                                    <div class="lighten-5 ">
+                                                      <div class="row valign-wrapper">
+                                                        <div class="col s1 my_team_image">
+                                                          <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                                                        </div>
+                                                        
+                                                        <div class="col s10">
+                                                          <span class="black-text">
+                                                            Franchise2Sell.com.au Dev
+                                                          </span>
+                                                          <ul class="m_user_name">
+                                                          	<li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                          
+                                                          </ul>
+                                                        </div>
+                                                        
+                                                        <div class="col s2">
+                                                        	<a href="#" class="datepicker"><span class="new"> <i class="fa fa-calendar" aria-hidden="true"></i> Oct 31 2017</span></a>
+                                                        </div>
+                                                        
+                                                      </div>
+                                                    </div>
+                                                  </div>            
+                                               </div>
+                                                <!-- collapsible_box end here -->
+                                                
+                                                </div>
+                                              </li>
+                                            </ul>
+                                    		
+                              
+                                       
+
+                                    </div>
+                                     <div class="card-content">
+                                            <ul class="collapsible row valign-wrapper" data-collapsible="accordion">
+                                              <li>
+                                               <span class="col s1 m1 collapsible-header"><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;</span> 
+                                                  <div class="col s11 m11">
+                                                    <div class="lighten-5 ">
+                                                      <div class="row valign-wrapper">
+                                                       
+                                                        <div class="col s1 my_team_image">
+                                                          <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                                                        </div>
+                                                        <div class="col s9">
+                                                          <span class="black-text">
+                                                            Franchise2Sell.com.au Dev
+                                                          </span>
+                                                          <ul class="m_user_name">
+                                                          	<li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                          
+                                                          </ul>
+                                                        </div>
+                                                        
+                                                        <div class="col s2">
+                                                        	<a href="#" class="datepicker"><span class="new"> <i class="fa fa-calendar" aria-hidden="true"></i> Oct 31 2017</span></a>
+                                                        </div>
+                                                        
+                                                      </div>
+                                                    </div>
+                                                  </div>            
+                                               
+                                                <div class="collapsible-body">
+                                                <!-- collapsible_box start here -->
+                                                <div class="collapsible_box">
+                                                  <div class="col s12 m12">
+                                                    <div class="lighten-5 ">
+                                                      <div class="row valign-wrapper">
+                                                        <div class="col s1 my_team_image">
+                                                          <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                                                        </div>
+                                                        <div class="col s10">
+                                                          <span class="black-text">
+                                                            Franchise2Sell.com.au Dev
+                                                          </span>
+                                                          <ul class="m_user_name">
+                                                          	<li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                          
+                                                          </ul>
+                                                        </div>
+                                                        
+                                                        <div class="col s2">
+                                                        	<a href="#" class="datepicker"><span class="new"> <i class="fa fa-calendar" aria-hidden="true"></i> Oct 31 2017</span></a>
+                                                        </div>
+                                                        
+                                                      </div>
+                                                    </div>
+                                                  </div>            
+                                               </div>
+                                                <!-- collapsible_box end here -->
+                                                
+                                                  <!-- collapsible_box start here -->
+                                                <div class="collapsible_box">
+                                                  <div class="col s12 m12">
+                                                    <div class="lighten-5 ">
+                                                      <div class="row valign-wrapper">
+                                                        <div class="col s1 my_team_image">
+                                                          <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                                                        </div>
+                                                        
+                                                        <div class="col s10">
+                                                          <span class="black-text">
+                                                            Franchise2Sell.com.au Dev
+                                                          </span>
+                                                          <ul class="m_user_name">
+                                                          	<li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                            <li><a href="#" class = "tooltipped" data-position = "top" data-delay = "50" data-tooltip = "Alok Tiwari">Alok Tiwari</a></li>
+                                                          
+                                                          </ul>
+                                                        </div>
+                                                        
+                                                        <div class="col s2">
+                                                        	<a href="#" class="datepicker"><span class="new"> <i class="fa fa-calendar" aria-hidden="true"></i> Oct 31 2017</span></a>
+                                                        </div>
+                                                        
+                                                      </div>
+                                                    </div>
+                                                  </div>            
+                                               </div>
+                                                <!-- collapsible_box end here -->
+                                                
+                                                </div>
+                                              </li>
+                                            </ul>
+                                    		
+                              
+                                       
+
+                                    </div>
+                                    
+                                    <div class="card-reveal">
+                                        <span class="card-title grey-text text-darken-4">Roger Waters <i class="mdi-navigation-close right"></i></span>
+                                        <p>Here is some more information about this card.</p>
+                                        <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Project Manager</p>
+                                        <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> +1 (612) 222 8989</p>
+                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i> mail@domain.com</p>
+                                        <p><i class="mdi-social-cake cyan-text text-darken-2"></i> 18th June 1990</p>
+                                        <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> BAR - AUS</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+
+                            <div class="col s12 m12 l6 my_panel_box my_panel_box_one">
+                                <div id="profile-card" class="card">
+                                    <div class="card-image waves-effect waves-block waves-light">
+                                        <img class="activator" src="images/user-bg.jpg" alt="user background">
+                                        <div class="a_task">aUpcoming</div>
+                                        <div class="add_project_task"><a href="#"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Add to folder/project</a></div>
+                                        <div class="add_attach_task">
+                                        	<ul>
+                                            	<li><a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i> Attach files</a></li>
+                                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Shared with 1 group and 1 person</a></li>
+                                        	</ul>
+                                        </div>
+                                        
+                                        
+                                        
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <div class="row">
+										<div class="col s2 m2">
+                                            <p>
+                                            <form action="">
+                                               <div class="my_team_active_task"><input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" /></div>
+                                                <div class="my_team_active_task_select">
+                                              	<select>
+                                                  <option value = "0" selected>Active</option>
+                                                  <option value = "1">Complete</option>
+                                                  <option value = "5">Cancelled</option>
+                                               </select> 
+                                            	</div>
+                                              </form>
+                                            </p>
+                                        	
+                                        </div>
+                                        <div class="col s9 m9">
+                                        	<div class="my_team_add_team">
+                                            <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                                            <span>Ashutosh Kumar</span>
+                                            </div>
+                                            
+                                            <div class="my_team_plus"><a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                                        
+                                        
+                                        </div>
+                                        
+                                        
+									</div>
+                                    
+                                    
+                                    
+                                    
+                                    <div class="row my_team_date" >
+                                    	<div class="col s4 m4">
+                                            <div class="row">
+                                            	<div class="col s5 m5 start_date">Start Date</div>
+                                                <div class="col s7 m7 start_date_box" >
+                                                 <a href="#">
+                                                    <input class="datepicker" type="text" name="Search"  placeholder="mm/yy/dd"/>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                 </a>
+                                                 </div>
+                                            </div> 
+                                        
+                                        </div> 
+                                        
+                                        <div class="col s4 m4">
+                                            <div class="row">
+                                            	<div class="col s5 m5 finish_date">Finish Date</div>
+                                                <div class="col s7 m7 start_date_box" >
+                                                 <a href="#">
+                                                    <input class="datepicker" type="text" name="Search"  placeholder="mm/yy/dd"/>
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                 </a>
+                                                 </div>
+                                            </div> 
+                                        
+                                        </div> 
+                                        
+                                        <div class="col s3 m3 active_dropdown">
+                                         <div class="row">
+                                            	<div class="col s6 m6 start_date">Status</div>
+                                                <div class="col s6 m6 start_date_box" >
+                                               <select>
+                                                  <option value = "0" selected>Green</option>
+                                                  <option value = "1">Red</option>
+                                                  <option value = "2">Yellow</option>
+                                                  <option value = "3">Completed</option>
+                                                  <option value = "4">On hold</option>
+                                                  <option value = "5">Cancelled</option>
+                                               </select> 
+                                               </div>  
+                                        </div> 
+                                    </div>
+                                    <div class="col s1 m1"></div>
+                                    
+                                    
+                                    
+                                    </div>
+									<!-- Text Editor Start Here -->
+									<div class="row">
+										<div class="nopadding">
+											<textarea id="txtEditor"></textarea> 
+										</div>
+									</div>
+									<!-- Text Editor End Here -->
+                                    
+                                    <!-- Text Editor Start Here -->
+                                    <div class="row">
+                                            <div class="col s12 m12 my_team_list">
+                                            <div class="card-panel grey lighten-5 z-depth-1">
+                                              <div class="row valign-wrapper">
+                                                <div class="col s1 my_team_image">
+                                                  <img src="images/avatar.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                                </div>
+                                                <div class="col s11">
+                                                  <div class="my_team_name">Manish Khanna	<span>Jan 11, 2016</span></div>
+                                                  <span class="black-text">
+                                                    This is a square image. Add the "circle" class to it to make it appear circular.
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div> 
+            					   </div>
+                                <!-- Text Editor Start Here -->
+                                
+                               <div class="row"> 
+                                 <div class="col s12 m12 my_team_list_one ">
+                                            <div class="card-panel grey lighten-5 z-depth-1">
+                                              <div class="row valign-wrapper">
+                                                <div class="col s1 my_team_image">
+                                                  <img src="images/avatar.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                                </div>
+                                                <div class="col s11">
+                                                  <div class="my_team_name">Manish Khanna	<span>Jan 11, 2016</span></div>
+                                                  <span class="black-text">
+                                                    This is a square image. Add the "circle" class to it to make it appear circular.
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                
+                                </div>
+                                
+                                
+                                
+                               <!-- Text Editor Start Here -->
+                                    <div class="row">
+                                            <div class="col s12 m12 my_team_list">
+                                            <div class="card-panel grey lighten-5 z-depth-1">
+                                              <div class="row valign-wrapper">
+                                                <div class="col s1 my_team_image">
+                                                  <img src="images/avatar.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                                </div>
+                                                <div class="col s11">
+                                                  <div class="my_team_name">Manish Khanna	<span>Jan 11, 2016</span></div>
+                                                  <span class="black-text">
+                                                    This is a square image. Add the "circle" class to it to make it appear circular.
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div> 
+            					   </div>
+                                <!-- Text Editor Start Here -->
+                                
+                               <div class="row"> 
+                                 <div class="col s12 m12 my_team_list_one ">
+                                            <div class="card-panel grey lighten-5 z-depth-1">
+                                              <div class="row valign-wrapper">
+                                                <div class="col s1 my_team_image">
+                                                  <img src="images/avatar.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                                                </div>
+                                                <div class="col s11">
+                                                  <div class="my_team_name">Manish Khanna	<span>Jan 11, 2016</span></div>
+                                                  <span class="black-text">
+                                                    This is a square image. Add the "circle" class to it to make it appear circular.
+                                                  </span>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                
+                                </div>
+                                
+                                
+                                
+                               
+                                <div class="clear">&nbsp;</div>
+                                
+                               <!-- send text area Satrt Here-->
+                                <div class="row">
+                                	<div class="col s12 m12 my_team_send_box">
+										 <form action="">
+                                         	  <div class="my_team_attach"><a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i></a></div>
+                                              <textarea class="form-control textarea-control" rows="3" placeholder="Textarea with emoji image input" data-emojiable="true"></textarea>
+                                              <button type="submit" form="form1" value="Submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                                         </form> 
+                                    
+									</div>
+								</div>	
+							   <!-- send text area Satrt Here-->	
+									
+									
+                                    
+                                    
+                                    
+                                    
+                                   
+                                    <div class="card-reveal">
+                                        <span class="card-title grey-text text-darken-4">Roger Waters <i class="mdi-navigation-close right"></i></span>
+                                        <p>Here is some more information about this card.</p>
+                                        <p><i class="mdi-action-perm-identity cyan-text text-darken-2"></i> Project Manager</p>
+                                        <p><i class="mdi-action-perm-phone-msg cyan-text text-darken-2"></i> +1 (612) 222 8989</p>
+                                        <p><i class="mdi-communication-email cyan-text text-darken-2"></i> mail@domain.com</p>
+                                        <p><i class="mdi-social-cake cyan-text text-darken-2"></i> 18th June 1990</p>
+                                        <p><i class="mdi-device-airplanemode-on cyan-text text-darken-2"></i> BAR - AUS</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    <!--card widgets end-->
+
+                  
+
+                 
+                </div>
+                <!--end container-->
+            </section>
+            <!-- END CONTENT -->
+
+            <!-- //////////////////////////////////////////////////////////////////////////// -->
+            <!-- START RIGHT SIDEBAR NAV-->
+            <aside id="right-sidebar-nav">
+                <ul id="chat-out" class="side-nav rightside-navigation">
+                    <li class="li-hover">
+                    <a href="#" data-activates="chat-out" class="chat-close-collapse right"><i class="mdi-navigation-close"></i></a>
+                    <div id="right-search" class="row">
+                        <form class="col s12">
+                            <div class="input-field">
+                                <i class="mdi-action-search prefix"></i>
+                                <input id="icon_prefix" type="text" class="validate">
+                                <label for="icon_prefix">Search</label>
+                            </div>
+                        </form>
+                    </div>
+                    </li>
+                    <li class="li-hover">
+                        <ul class="chat-collapsible" data-collapsible="expandable">
+                        <li>
+                            <div class="collapsible-header teal white-text active"><i class="mdi-social-whatshot"></i>Recent Activity</div>
+                            <div class="collapsible-body recent-activity">
+                                <div class="recent-activity-list chat-out-list row">
+                                    <div class="col s3 recent-activity-list-icon"><i class="mdi-action-add-shopping-cart"></i>
+                                    </div>
+                                    <div class="col s9 recent-activity-list-text">
+                                        <a href="#">just now</a>
+                                        <p>Jim Doe Purchased new equipments for zonal office.</p>
+                                    </div>
+                                </div>
+                                <div class="recent-activity-list chat-out-list row">
+                                    <div class="col s3 recent-activity-list-icon"><i class="mdi-device-airplanemode-on"></i>
+                                    </div>
+                                    <div class="col s9 recent-activity-list-text">
+                                        <a href="#">Yesterday</a>
+                                        <p>Your Next flight for USA will be on 15th August 2015.</p>
+                                    </div>
+                                </div>
+                                <div class="recent-activity-list chat-out-list row">
+                                    <div class="col s3 recent-activity-list-icon"><i class="mdi-action-settings-voice"></i>
+                                    </div>
+                                    <div class="col s9 recent-activity-list-text">
+                                        <a href="#">5 Days Ago</a>
+                                        <p>Natalya Parker Send you a voice mail for next conference.</p>
+                                    </div>
+                                </div>
+                                <div class="recent-activity-list chat-out-list row">
+                                    <div class="col s3 recent-activity-list-icon"><i class="mdi-action-store"></i>
+                                    </div>
+                                    <div class="col s9 recent-activity-list-text">
+                                        <a href="#">Last Week</a>
+                                        <p>Jessy Jay open a new store at S.G Road.</p>
+                                    </div>
+                                </div>
+                                <div class="recent-activity-list chat-out-list row">
+                                    <div class="col s3 recent-activity-list-icon"><i class="mdi-action-settings-voice"></i>
+                                    </div>
+                                    <div class="col s9 recent-activity-list-text">
+                                        <a href="#">5 Days Ago</a>
+                                        <p>Natalya Parker Send you a voice mail for next conference.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header light-blue white-text active"><i class="mdi-editor-attach-money"></i>Sales Repoart</div>
+                            <div class="collapsible-body sales-repoart">
+                                <div class="sales-repoart-list  chat-out-list row">
+                                    <div class="col s8">Target Salse</div>
+                                    <div class="col s4"><span id="sales-line-1"></span>
+                                    </div>
+                                </div>
+                                <div class="sales-repoart-list chat-out-list row">
+                                    <div class="col s8">Payment Due</div>
+                                    <div class="col s4"><span id="sales-bar-1"></span>
+                                    </div>
+                                </div>
+                                <div class="sales-repoart-list chat-out-list row">
+                                    <div class="col s8">Total Delivery</div>
+                                    <div class="col s4"><span id="sales-line-2"></span>
+                                    </div>
+                                </div>
+                                <div class="sales-repoart-list chat-out-list row">
+                                    <div class="col s8">Total Progress</div>
+                                    <div class="col s4"><span id="sales-bar-2"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header red white-text"><i class="mdi-action-stars"></i>Favorite Associates</div>
+                            <div class="collapsible-body favorite-associates">
+                                <div class="favorite-associate-list chat-out-list row">
+                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
+                                    </div>
+                                    <div class="col s8">
+                                        <p>Eileen Sideways</p>
+                                        <p class="place">Los Angeles, CA</p>
+                                    </div>
+                                </div>
+                                <div class="favorite-associate-list chat-out-list row">
+                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
+                                    </div>
+                                    <div class="col s8">
+                                        <p>Zaham Sindil</p>
+                                        <p class="place">San Francisco, CA</p>
+                                    </div>
+                                </div>
+                                <div class="favorite-associate-list chat-out-list row">
+                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img offline-user valign profile-image">
+                                    </div>
+                                    <div class="col s8">
+                                        <p>Renov Leongal</p>
+                                        <p class="place">Cebu City, Philippines</p>
+                                    </div>
+                                </div>
+                                <div class="favorite-associate-list chat-out-list row">
+                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
+                                    </div>
+                                    <div class="col s8">
+                                        <p>Weno Carasbong</p>
+                                        <p>Tokyo, Japan</p>
+                                    </div>
+                                </div>
+                                <div class="favorite-associate-list chat-out-list row">
+                                    <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img offline-user valign profile-image">
+                                    </div>
+                                    <div class="col s8">
+                                        <p>Nusja Nawancali</p>
+                                        <p class="place">Bangkok, Thailand</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+            <!-- LEFT RIGHT SIDEBAR NAV-->
+
+        </div>
+        <!-- END WRAPPER -->
+
+    </div>
+    <!-- END MAIN -->
+
+
+
+    <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+    <!-- START FOOTER -->
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                Copyright © 2015 <a class="grey-text text-lighten-4" href="http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs" target="_blank">Myteam</a> All rights reserved.
+                <span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="http://geekslabs.com/">Business2sell services</a></span>
+            </div>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+
+
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    
+    <!-- jQuery Library --><script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/plugins/jquery-1.11.2.min.js"></script>    
+    <!--materialize js-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    
+    
+    <!-- Begin emoji-picker JavaScript -->
+    <script type="text/javascript" src="lib/js/config.js"></script>
+    <script type="text/javascript" src="lib/js/util.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.emojiarea.js"></script>
+    <script type="text/javascript" src="lib/js/emoji-picker.js"></script>
+    <!-- End emoji-picker JavaScript -->
+
+	 <script>
+      $(function() {
+        // Initializes and creates emoji set from sprite sheet
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: '../lib/img/',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+        // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+        // It can be called as many times as necessary; previously converted input fields will not be converted again
+        window.emojiPicker.discover();
+      });
+    </script>
+
+    <!-- sparkline -->
+    <script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="js/plugins/sparkline/sparkline-script.js"></script>
+    
+   <script type="text/javascript" src="js/editor.js"></script>
+		<script>
+		
+			$(document).ready(function() {
+				$("#txtEditor").Editor();
+			});
+		</script>
+
+    
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="js/plugins.min.js"></script>
+    <!--custom-script.js - Add your own theme custom JS-->
+    <script type="text/javascript" src="js/custom-script.js"></script>
+    <!-- Toast Notification -->
+    <script type="text/javascript">
+	
+    // Toast Notification
+    $(window).load(function() {
+        setTimeout(function() {
+            Materialize.toast('<span>Hiya! I am a toast.</span>', 1500);
+        }, 1500);
+        setTimeout(function() {
+            Materialize.toast('<span>You can swipe me too!</span>', 3000);
+        }, 5000);
+        setTimeout(function() {
+            Materialize.toast('<span>You have new order.</span><a class="btn-flat yellow-text" href="#">Read<a>', 3000);
+        }, 15000);
+    });
+    </script>
+	
+	
+	
+	
+	
+	
+	
+</body>
+
+</html>
+
