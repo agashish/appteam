@@ -1242,7 +1242,7 @@ tfoot {
 .collapsible-header {
 	font-weight: 500
 }
-.collapsible-header:after {
+/*.collapsible-header:after {
 	font-family: "Material-Design-Icons";
 	content: "\e7c3";
 	float: right;
@@ -1251,7 +1251,7 @@ tfoot {
 }
 .collapsible-header.active:after {
 	content: "\e7c1"
-}
+}*/
 #input-select .input-field label {
 	position: absolute;
 	top: -14px;
@@ -1941,4 +1941,52 @@ tfoot {
 }
 #polar-chart-holder {
 	padding-top: 20px
+}
+/*STYLE FOR MODEL BOXES*/
+.met_plus i {
+	font: normal normal normal 14px/1 FontAwesome!important;
+	float: right;
+	color: #fff;
+	background-color: #00bff3;
+	border-radius: 30px;
+	width: 20px!important;
+	height: 20px;
+	box-shadow: 0px 0px 0px 4px rgba(5,190,228,0.3);
+	margin-top: 12px;
+	line-height: 22px!important;
+	padding-left: 0px;
+}
+.lean-overlay { background: initial; position:relative;}
+.modal-content { box-shadow:none; border-radius:0px; border: none;}
+
+.popup_form .input-field label {
+	color: #9e9e9e;
+	position: absolute;
+	top: -7px;
+	left: 0.75rem;
+	font-size: 14px;
+	cursor: text;
+	-webkit-transition: 0.2s ease-out;
+	-moz-transition: 0.2s ease-out;
+	-o-transition: 0.2s ease-out;
+	-ms-transition: 0.2s ease-out;
+	transition: 0.2s ease-out;
+	font-weight: normal;
+}
+#modal-page .col {
+	padding: 0px;
+}
+.modal_dashbord_box {
+
+	max-width: 35%;
+	border: solid 1px #c1c1c1;
+	max-height: -webkit-min-content; max-height: -moz-min-content; max-height: min-content;     top: 0px!important;
+}
+
+.popup_form .my_team_login a { color:#fff !important;}
+
+.met_plus {
+	position: absolute;
+	right: -15px;
+	top:0px;
 }

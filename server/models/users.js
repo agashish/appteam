@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
     },
     lastname: {
         type: String,
-        require: true,
+        //require: true,
         trim: true
     },
     username: {
@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
     },
     phonenumber: {
         type: Number,
-        require: true,
+        //require: true,
         trim: true,
         maxlength: 10,
         
@@ -44,8 +44,7 @@ const userSchema = mongoose.Schema({
         default: 2
     },
     token: {
-        type: String,
-        require: true
+        type: String
     }
 })
 
@@ -125,6 +124,15 @@ userSchema.methods.comparePassword = function (textPassword , cb) {
     })
 }
 
+userSchema.statics.getTeamList = function(reqUser , cb) {
+    var user = this
+    user.find().exec((err, user) => {
+        if(err){
+            return cb(err)
+        }
+        return cb(null, user)
+    })
+}
 
 //#### CREATE MODEL CONSTRUCTOR
 const User = mongoose.model('User', userSchema)

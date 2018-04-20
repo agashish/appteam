@@ -76,11 +76,11 @@
 .avatar-xs span.text-circle { width: 24px; height: 24px;}
 .avatar-xs i { height: 7px; width: 7px;}
 .page-topbar .dropdown-content { min-width:150px; top: 63px!important;}
-#left-sidebar-nav .collapsible-header::after {  font-family: "Material-Design-Icons"; content: "\e701";float: right;color: #fff;font-size: 14px; background-color:#00bff3;border-radius:30px; width:20px; height:20px; box-shadow: 0px 0px 0px 4px rgba(5,190,228,0.3); margin-top: 12px; line-height:19px; padding-left: 3px; }
-#left-sidebar-nav .collapsible-header.active::after {content: "\e716";line-height:19px;}
+/*#left-sidebar-nav .collapsible-header::after {  font-family: "Material-Design-Icons"; content: "\e701";float: right;color: #fff;font-size: 14px; background-color:#00bff3;border-radius:30px; width:20px; height:20px; box-shadow: 0px 0px 0px 4px rgba(5,190,228,0.3); margin-top: 12px; line-height:19px; padding-left: 3px; }
+#left-sidebar-nav .collapsible-header.active::after {content: "\e716";line-height:19px;}*/
 .left_panel_menu { position:relative;}	
 .left_panel_menu li a::before {font-family: "Material-Design-Icons"; content: "\e7c3"; position: absolute; left: 20px;font-size: 18px;} 
-ul.side-nav.leftside-navigation > li { border-bottom: solid 1px #e6e6e6;}
+ul.side-nav.leftside-navigation > li { border-bottom: solid 1px #e6e6e6; position:relative;}
 .header-search-filter {margin:0px;width: calc(100%);height: 40px;display: inline-block;position: relative}
 .header-search-filter span {position: absolute;font-size: 24px;top: 6px;left: 24px;line-height: 32px !important;-webkit-transition: color 200ms ease;transition: color 200ms ease}
 .header-search-filter input.header-search-input {display: block;width: 100%;background:#d7ebf0;height: 24px;-webkit-transition: all 200ms ease;transition: all 200ms ease;border: none;font-size: 16px;appearance: textfield;font-weight: 400;outline: none;border-radius:0px;}
@@ -98,7 +98,7 @@ ul.side-nav.leftside-navigation > li { border-bottom: solid 1px #e6e6e6;}
 .start_date {font-size: 13px; padding-top: 15px !important; display: inline-block; text-align: center;font-weight: 600; padding-left: 25px!important;}
 .start_date_box { padding: 0px;position: relative;}
 .start_date_box input[type=text] { background-color: #ebebeb; padding: 5px 10px; height: auto; border-radius: 6px; margin-top: 10px;border-bottom:none;font-size:13px;}
-.start_date_box i { position: absolute; right: 0px; top: 17px; color: #484848;font-size: 14px;}
+.start_date_box i { position:absolute;right:25px;top:17px;color:#484848; font-size: 14px;}
 .select-wrapper input.select-dropdown { line-height:1.5rem;}
 .finish_date {font-size: 13px; padding-top: 15px !important; display: inline-block; text-align: center; font-weight: 600; padding-left:20px!important;}
 .my_team_date { border-bottom: solid 1px #e6e6e6; border-top: solid 1px #e6e6e6;}
@@ -113,14 +113,15 @@ ul.side-nav.leftside-navigation > li { border-bottom: solid 1px #e6e6e6;}
 .my_team_attach { font-size:30px; color:#aeaeae; }
 .my_team_send_box button { background-color:#008cc5; color:#fff; font-size:18px; border:none; padding:0px 3px; position: absolute; right:20px; top:15px; z-index: 999; width:40px; height:40px; border-radius:60px; }
 .my_panel_box .card-content { border-top: solid 1px #ddd;}
-.card-content > ul { margin-top: 10px !important;}
+.card-content > ul { margin-top: 10px !important; display: flex;
+    flex-direction: column; }
 .emoji-menu-tabs td { padding: 0px;}
 .dropdown-content li > span { font-size:13px; font-weight:normal;}
 .my_panel_box .select-wrapper span.caret {position: absolute; right:5px;top: 22px;font-size: 0px;}
 .my_team_active_task { width: 20%; float: left; padding-top: 13px;}
 .my_team_active_task input[type="checkbox"] { position: relative; left: 10px;visibility: inherit;}
 .my_team_active_task_select { width: 70%; float: right;}
-.my_team_add_team img { width: 36px;margin-top: 15px;float:left;}
+.my_team_add_team img { width: 36px;margin-top: 15px;float:left; position: absolute; z-index: 99;}
 .my_team_add_team span { padding-top: 25px; padding-left: 10px; font-size: 13px; float: left;}
 .my_team_plus {float: left; padding-top: 25px;padding-left: 10px; font-weight: normal;}
 .my_team_plus i { color: #8c8c8c;}
@@ -166,4 +167,326 @@ ul.side-nav.leftside-navigation > li { border-bottom: solid 1px #e6e6e6;}
 .my_panel_box  { width:550px !important;}
 	
 	
+}
+
+
+.myteam-dropdown-box {
+    position: absolute;
+    z-index: 99;
+    top: 54px;
+    left: 0px;
+}
+.my-team-dropdown-main { position: relative;}
+.my-team-dropdown-main .myteam-seacrh-box {
+    height: 33px !important;
+    line-height: normal;
+    background:#fff!important;
+    padding: 0 10px;
+    box-sizing: border-box;
+    width: 100%;
+    border: solid 1px #ABABAB !important;
+    border-radius: 2px;
+    position:absolute;
+    z-index: 999;
+    top: 0px;
+    margin:0px;
+}
+.myteam-contacts-userpicker {
+    white-space: normal;
+    overflow: auto;
+    width: 300px;
+    height:auto;
+    background: #fff;
+    box-shadow: 0 0 6px #6f6f6f;
+    /*padding-top:30px;*/
+    position: relative;
+}
+.myteam-contacts-userpicker input[type="text"] {
+    width: 100%;
+    padding: 10px;
+
+}
+
+.myteam-contacts-userpicker .search input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    height: 27px !important;
+    line-height: normal;
+    background:#fff!important;
+    padding: 0 10px;
+    box-sizing: border-box;
+    width: 100%;
+    border: solid 1px #ABABAB !important;
+    border-radius: 2px;
+    position:absolute;
+    max-width: 280px;
+    z-index: 999;
+    top: 0px;
+    margin:0px;
+}
+.myteam-contacts-userpicker .list {
+    margin:30px 0 0 0;
+    max-height:200px;
+}
+.myteam-contacts-userpicker .user-item {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    min-height:50px;
+}
+.myteam-contacts-userpicker .user-item-wrap {
+    padding: 9px;
+    line-height: 18px;
+    white-space: nowrap;
+}
+
+.myteam-contacts-userpicker .user-item-wrap {
+    line-height: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.myteam-contacts-userpicker .user-item-userpic {
+    float: left;
+    width: 27px;
+    height: 27px;
+    overflow: hidden;
+    border-radius:60px;
+}
+.myteam-contacts-userpicker .user-item-userpic img {
+    width:28px;
+}
+.myteam-contacts-userpicker .user-item-info {
+    margin-left: 36px;
+    height: 27px;
+    position: relative;
+}
+.myteam-contacts-userpicker .info-name {
+    color: #000;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    top: -3px;
+    max-width: 100%;
+}
+.myteam-contacts-userpicker .info-email-groups {
+    width:28px;
+}
+.myteam-contacts-userpicker .user-item.has-groups .info-email {
+    max-width: 225px;
+}
+.myteam-contacts-userpicker .info-email {
+    float: left;
+    white-space: nowrap;
+    z-index: 1;
+}
+.myteam-contacts-userpicker .info-email {
+    color: #a5a5a5;
+    font-size: 11px;
+    line-height: 25px;
+    height: 17px;
+    position: absolute;
+    bottom: 0;
+    max-width: 100%;
+}
+
+.myteam-contacts-userpicker-serach {
+    white-space: normal;
+    overflow: auto;
+    width: 500px;
+    height: auto;
+    background: #fff;
+    box-shadow: 0 0 6px #6f6f6f;
+    /* padding-top: 30px; */
+    position: relative;
+}
+.myteam-contacts-userpicker-serach .list-serach {
+    margin: 0;
+    max-height: 200px;
+}
+.myteam-contacts-userpicker-serach .list-serach li{
+    width:100%;
+}
+.myteam-contacts-userpicker-serach .user-item {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    min-height: 50px;
+}
+.myteam-dropdown-box-search {
+    position: absolute;
+    top:50px;
+    right: 0;
+    z-index: 1;
+}
+.myteam-contacts-userpicker-serach .user-item-wrap {
+    line-height: 18px;
+    white-space: nowrap;
+    cursor: pointer;
+    padding: 9px;
+}
+.myteam-contacts-userpicker-serach .user-item-userpic {
+    float: left;
+    width: 27px;
+    height: 27px;
+    overflow: hidden;
+    border-radius: 60px;
+}
+.myteam-contacts-userpicker-serach .user-item-userpic img {
+    width: 28px;
+}
+.myteam-contacts-userpicker-serach .user-item-info {
+    margin-left: 36px;
+    height: 27px;
+    position: relative;
+}
+.myteam-contacts-userpicker-serach .info-name {
+    color: #000;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    top: -3px;
+    max-width: 100%;
+}
+.myteam-contacts-userpicker-serach .info-email-groups {
+    width: 28px;
+}
+.myteam-contacts-userpicker-serach .user-item.has-groups .info-email {
+    max-width: 225px;
+}
+
+.myteam-contacts-userpicker-serach .info-email {
+    color: #a5a5a5;
+    font-size: 11px;
+    line-height: 25px;
+    height: 17px;
+    position: absolute;
+    bottom: 0;
+    max-width: 100%;
+}
+
+/*FOR DROPDOWN MAINTAIN*/
+.custom_dropdown {
+    position: absolute;
+    top: 70px;
+    left: 15px;
+    z-index: 999;
+}
+.myteam-seacrh-box {
+    height: 33px !important;
+    line-height: normal;
+    background:#fff!important;
+    padding: 0 10px;
+    box-sizing: border-box;
+    width: 100%;
+    border: solid 1px #ABABAB !important;
+    border-radius: 2px;
+    position:absolute;
+    z-index: 999;
+    top: 0px;
+    margin:0px;
+}
+
+.card-image .add_project_task .my_team_add_team img {
+    width: 36px;
+    margin-top: 15px;
+    float: left;
+}
+
+
+.assignee-name-new {
+    position: relative;
+    display: inline-block;
+}
+.assignee-name-new span{
+    border: 1px solid #DDD;
+    padding: 5px;
+    line-height: 25px;
+    margin: 5px;
+    position: relative;
+    top: 5px;
+    cursor: pointer;
+}
+.assignee-name-new span .project-delete {
+    position: absolute;
+    background: #333;
+    color: #FFF;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    text-align: center;
+    line-height: 8px;
+    right: -16px;
+    top: -17px;
+    opacity: 0;
+    cursor: pointer;
+}
+.assignee-name-new:hover .project-delete {
+    opacity: 1;
+}
+.add_project_task  {
+    display: inline-block;
+    float: left;
+    width: 100%;
+    padding: 15px 0px 0;
+}
+.my_team_active_task_select select {
+    display: block;
+    border: solid 1px #ccc;
+    margin-top: 8px;
+}
+.my_team_status_task_select select {
+    display: block;
+    border: solid 1px #ccc;
+    margin-top: 8px;
+}
+
+.from-to-date-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    margin-top:8px;
+}
+
+.user-delete {
+    background-color:#333;
+    margin-right: 5px;
+    padding: 4px!important;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    color: #fff;
+    line-height: 8px;
+    font-weight: bold;
+    font-size: 10px!important;
+    position: absolute;
+    top: 0px;
+    opacity: 0;
+}
+.user-text-n:hover .user-delete {
+    opacity: 1;
+}
+.user-text-n {
+    background-color: #f1f1f1;
+    display: inline-block;
+    margin-top: 13px;
+    padding: 10px 10px 10px 45px!important;
+    border-radius: 60px;
+    position: relative;
+    margin-right: 8px;
 }
