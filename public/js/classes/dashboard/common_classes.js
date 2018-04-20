@@ -366,22 +366,60 @@ class CommonFunctionClass extends CustomWork {
 
     }
 
+    //#### OPEN INPUT BOX TO ADD NEW TASK
+    openInputForAddTask() {
+
+        //grab all fields values and arrange to send to serve by our controller
+        const userData = null
+
+        //function options for common ajax
+        const funcOptions = {
+            url: '/dashboard/task/add/input',
+            type: 'post',
+            dataType: 'html',
+            beforeSend: false,
+            contentType: '',
+            data: false,
+            responseBack: 'myteam-new-at-task',
+            selector: '.', // . | #
+            domElem: '', //span , div, etc
+            domManipulation: false,
+            addInput: true,
+            responseElem: {
+                domElem: {},
+                domSelector: {}
+            },
+            modelDom: {},
+            ajaxModel: false,
+            rmvSelector: {
+                origClassClicked: 'myteam-advpTask',
+                origClassSelector: '.'
+            }
+        }
+
+        //######## CALL AJAX COMMON FUNCTION TO SEND AND RETREIVE RESPONSES
+        //params : data
+        //params : func
+        sendData(userData, funcOptions)
+
+    }
+
     //#### INVOKE SAVE NEW TASK BY DEFAULT
     addNewTaskOnClick(ref) {
 
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         //grab all fields values and arrange to send to serve by our controller
-        const taskData = {
+        const taskData = JSON.stringify({
             task_name: ref.val()
-        }
+        })
 
         //function options for common ajax
         const funcOptions = {
             url: '/dashboard/add/new/task',
             type: 'post',
-            dataType: '',
+            dataType: 'json',
             beforeSend: false,
-            contentType: '',
+            contentType: 'application/json',
             data: true,
             responseBack: 'myteam-new-at-task',
             selector: '.', // . | #
@@ -435,7 +473,7 @@ class CommonFunctionClass extends CustomWork {
             this.autoRender()
 
             //#### INVOKE SEND DATA
-            sendData(TaskDataList, funcOptionsUserList)
+            //sendData(TaskDataList, funcOptionsUserList)
             return false
         } else {
             console.log('error invoked')

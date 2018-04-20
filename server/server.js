@@ -355,6 +355,26 @@ app.get('/dashboard/project/list' , auth ,  (req, res) => {
     })
 })
 
+app.post('/dashboard/task/add/input' , auth , (req, res) => {
+
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+
+    res.render('dashboard/inputbox/inputbox', {
+        layout: null
+    })
+})
+
+app.post('/dashboard/add/new/task' , auth , (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login')
+    }
+
+    res.status(200).send('ok')
+
+})
 //#### LISTENING THE SERVER PORT
 app.listen(config.PORT , () => {
     console.log(`Server is running at ${config.PORT}`)

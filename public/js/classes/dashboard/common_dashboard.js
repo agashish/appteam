@@ -63,39 +63,7 @@ $(function(){
 
     //#### ADD NEW TASK AND ADD INPUT BOX
     $( "li.myteam-advpTask" ).on('click' , () => {
-
-        //grab all fields values and arrange to send to serve by our controller
-        const userData = null
-
-        //function options for common ajax
-        const funcOptions = {
-            url: '/dashboard/task/add/input',
-            type: 'post',
-            dataType: 'html',
-            beforeSend: false,
-            contentType: '',
-            data: false,
-            responseBack: 'myteam-new-at-task',
-            selector: '.', // . | #
-            domElem: '', //span , div, etc
-            domManipulation: false,
-            addInput: true,
-            responseElem: {
-                domElem: {},
-                domSelector: {}
-            },
-            modelDom: {},
-            ajaxModel: false,
-            rmvSelector: {
-                origClassClicked: 'myteam-advpTask',
-                origClassSelector: '.'
-            }
-        }
-
-        //######## CALL AJAX COMMON FUNCTION TO SEND AND RETREIVE RESPONSES
-        //params : data
-        //params : func
-        sendData(userData, funcOptions)
+        (new CommonFunctionClass()).openInputForAddTask()
     })
 
     //#### IF USER CLICK SOMEWHERE EXCEPT INPUT BOX THEN WILL REVERT IT BACK INSTANTLY
