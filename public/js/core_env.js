@@ -27,23 +27,11 @@ let sendData = ( sendDataObject , ajaxOptionObject ) => {
     else if( ajaxOptionObject.data == true && ajaxOptionObject.dataType == 'html' ){
         return ajaxInstanceNoData(sendDataObject , ajaxOptionObject )
     }
-   /* else if( ajaxOptionObject.data == true && ajaxOptionObject.fileUpload == true ){
-        return ajaxInstanceWithData(sendDataObject , ajaxOptionObject )
-    }
-    else if( ajaxOptionObject.data == true && ajaxOptionObject.dataType == 'json' ){
-
-        return ajaxInstanceWithData(sendDataObject , ajaxOptionObject )
-    }*/
-
-
+    
     //###### create ajax instance
     if( ajaxOptionObject.data == false ){
         return ajaxInstanceNoData(sendDataObject , ajaxOptionObject )
     }
-
-
-    //ajaxResponse = ajaxResponse
-
 }
 
 //######## SET AJAX RESPONSE BACK
@@ -89,7 +77,7 @@ let addInputInDom = (ajaxOptionObject , response) => {
         $(ajaxOptionObject.rmvSelector.origClassSelector+ajaxOptionObject.rmvSelector.origClassClicked).addClass('myteam-advpTask-input').removeClass('myteam-advpTask')
 
         //#### ADD FOCUS AFTER ADD INPUT BOX
-        //$('#task_name').focus()
+        $('#task_name').focus()
 
     }
 }
@@ -170,6 +158,14 @@ let refereshAssignProjectList = (ajaxOptionObject , response) => {
     }
 }
 
+//######## SEND TASK DETAIL THROUGH
+let showTaskDetail = (ajaxOptionObject , response) => {
+    if(ajaxOptionObject.custom == true) {        
+        //#### ADD NEW REFRESH DATA
+        $(ajaxOptionObject.domElem+ajaxOptionObject.selector+ajaxOptionObject.responseBack).html(response)        
+    }
+}
+
 
 //######## SET RESPONSE INTO HTML
 let setResponseHtml = (response , ajaxOptionObject) => {
@@ -193,6 +189,9 @@ let setResponseHtml = (response , ajaxOptionObject) => {
     if(ajaxOptionObject.nonAssgnProjects == true){nonAssgnProjects(ajaxOptionObject,response)}
 
     if(ajaxOptionObject.refereshAssignProjectList == true){refereshAssignProjectList(ajaxOptionObject,response)}
+
+    //#### DISPLAY TASK DETAIL AFTER SELECT/CHOOSE
+    if(ajaxOptionObject.custom == true){ showTaskDetail(ajaxOptionObject,response) }
 
 }
 
@@ -231,28 +230,35 @@ let setResponseBack = (response , ajaxOptionObject) => {
 
 //######### Invoke when data comes with true
 let ajaxInstanceWithData = (sendDataObject , ajaxOptionObject) => {
+
     let ajaxResult = $.ajax({
         type: ajaxOptionObject.type,
         url: ajaxOptionObject.url,
         dataType: ajaxOptionObject.dataType,
         data: sendDataObject,
         contentType: ajaxOptionObject.contentType,
-        async: false,
-        success: (response , status , xhr) => {
-            boolResult = setResponseBack(response,ajaxOptionObject)
-        },
-        error: (response) => {
-            alert('3 error')
-            boolResult = setResponseBack(response,ajaxOptionObject)
-        }
+        async: false        
     })
+    .done(function(response , status , xhr) {
+        //boolResult = setResponseBack(response,ajaxOptionObject)
+               
+    })
+    .fail(function(response) {
+        alert('3 error')
+        boolResult = setResponseBack(response,ajaxOptionObject)
+    })
+
+    if(ajaxOptionObject.custom == true){                 
+        setResponseHtml(ajaxResult.responseText , ajaxOptionObject)
+        return false
+    } 
 
     if(ajaxOptionObject.dataType == '')
     {
         var resp = JSON.parse(ajaxResult.responseText)
         return resp.status
     }
-
+    
     if(ajaxOptionObject.dataType == 'json')
     {
         var resp = JSON.parse(ajaxResult.responseText)

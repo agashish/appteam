@@ -1,0 +1,26 @@
+{{#each tasks}}
+    <li class="myteam-task-row" data-task-id="{{_id}}" data-pid="{{project_id}}" >
+        <span class="col s1 m1 collapsible-header"><i class="fa fa-caret-right" aria-hidden="true"></i> &nbsp;</span>
+        <div class="col s11 m11">
+            <div class="lighten-5 ">
+                <div class="row valign-wrapper">
+                    <div class="col s1 my_team_image">
+                        <img src="images/yuna.jpg" alt="" class="circle responsive-img">
+                    </div>
+                    <div class="col s9">
+                          <span class="black-text">
+                            {{ task_name }}
+                          </span>
+                        <ul class="m_user_name">
+                            Assigned Users List
+                        </ul>
+                    </div>
+
+                    <div class="col s2">
+                        <a href="javascript:void(0)" class="datepicker"><span class="new"> <i class="fa fa-calendar" aria-hidden="true"></i> {{date}}</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+{{/each}}    

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 const hbs = require('express-handlebars')
 const path = require('path')
+const partials = require('express-partial')
 
 //#### INVOKE DEFAULT PROCESS
 const config = require('./config/config').get(process.env.NODE_ENV)
@@ -22,6 +23,7 @@ mongoose.connect(config.DATABASE , (err) => {
 
 //#### READY WEB SERVER
 const app = express()
+app.use(partials())
 app.use(express.static(__dirname + '../public'));
 
 //#### GET THE MIDDLEWARE 
@@ -47,6 +49,8 @@ middleware.ximg(app)
 const {User} = require('./models/users')
 const  {Category} = require('./models/category')
 const {Project} = require('./models/project')
+const {Task} = require('./models/task')
+const {Notes} = require('./models/notes')
 
 //#### LOAD GET ROUTE
 app.get('/' , auth , (req, res) => {
@@ -108,13 +112,23 @@ app.get('/dashboard' , auth, (req, res) => {
                     req.project = {}
                 }
                 req.project = project
-                res.render('dashboard/home' , {
-                    layout: 'dashboard/dashboard_master',
-                    user: req.user,
-                    teams: user,
-                    category: req.category,
-                    project: req.project
-                }) 
+
+                //#### SET TASK LISTS DEFAULT INTO MIDDLE
+                Task.getTaskList((err, tasks) => {
+                    
+                    if(err) {
+                        res.status(400).send(err)
+                    }
+                    
+                    res.render('dashboard/home' , {
+                        layout: 'dashboard/dashboard_master',
+                        user: req.user,
+                        teams: user,
+                        category: req.category,
+                        project: req.project,
+                        tasks: tasks
+                    })
+                })
             })
         })        
     })
@@ -371,8 +385,89 @@ app.post('/dashboard/add/new/task' , auth , (req, res) => {
     if(!req.user){
         return res.redirect('/login')
     }
+    const task = new Task({
+        task_name: req.body.task_name,
+        user_id: req.user._id
+    })
 
-    res.status(200).send('ok')
+    task.save((err, task) =>{
+
+        if(err){
+            return res.status(400).send(err)
+        }
+
+        res.status(200).json({message:'Task Added', status: 200})
+    })
+})
+
+app.get('/dashboard/tasks/list' , auth , (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login')
+    }
+
+    Task.getTaskList((err, tasks) => {
+
+        if(err) {
+            res.status(400).send(err)
+        }
+
+        res.render('dashboard/tasks/tasks', {
+            layout: null,
+            tasks: tasks
+        })
+    })
+})
+
+app.post('/dashboard/tasks/detail', auth ,  (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login')
+    }
+
+    Task.getTaskDetailById(req.body.id , (err , taskDetail) => {
+
+        if(err){
+            return res.status(400).send(err)
+        }            
+
+        //#### SET THE VIEW OF TASK DETAIL PAGE
+        res.render('dashboard/tasks/task_detail', {
+            layout: null,
+            taskDetail
+        })
+    })
+
+})
+
+//#### UPDATE OF PARTICULAR TASK
+app.post('/dashboard/tasks/detail/date/update', auth ,  (req, res) => {
+
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+
+    Task.findByIdAndUpdate({'_id':req.body.task_id}, {
+        fromDate: req.body.fromDate,
+        toDate: req.body.toDate
+    }).exec((err, doc) => {
+        if(err){
+            return res.status(400).send(err)
+        }
+
+        res.status(200).send(req.body)
+    })
+})
+
+
+//#### SAVE NOTES
+app.post('/dashboard/task/add/notes', auth , (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login')
+    }
+
+    res.status(200).send(req.body)
 
 })
 //#### LISTENING THE SERVER PORT

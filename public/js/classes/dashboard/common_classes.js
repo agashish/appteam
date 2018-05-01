@@ -410,7 +410,7 @@ class CommonFunctionClass extends CustomWork {
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         //grab all fields values and arrange to send to serve by our controller
         const taskData = JSON.stringify({
-            task_name: ref.val()
+            task_name: $.trim(ref.val())
         })
 
         //function options for common ajax
@@ -473,7 +473,7 @@ class CommonFunctionClass extends CustomWork {
             this.autoRender()
 
             //#### INVOKE SEND DATA
-            //sendData(TaskDataList, funcOptionsUserList)
+            sendData(TaskDataList, funcOptionsUserList)
             return false
         } else {
             console.log('error invoked')
@@ -491,18 +491,17 @@ class CommonFunctionClass extends CustomWork {
 
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         //grab all fields values and arrange to send to serve by our controller
-
-        const taskData = {
-            id: ref.data('id')
-        }
+        const taskData = JSON.stringify({
+            id: ref.data('task-id')
+        })
 
         //function options for common ajax
         const funcOptionsUserList = {
             url: '/dashboard/tasks/detail',
             type: 'POST',
-            dataType: 'html',
+            dataType: '',
             beforeSend: false,
-            contentType: '',
+            contentType: 'application/json',
             data: true,
             responseBack: 'myteam-task-details-up',
             selector: '.', // . | #
@@ -515,8 +514,7 @@ class CommonFunctionClass extends CustomWork {
                 domSelector: {}
             },
             modelDom: {},
-            ajaxModel: false,
-            taskList: true
+            custom: true
         }
 
         sendData(taskData,funcOptionsUserList)
@@ -642,10 +640,12 @@ class CommonFunctionClass extends CustomWork {
 
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         //grab all fields values and arrange to send to serve by our controller
-        const taskData = {
-            id: $('div.my_team_add_team').data('tt-dflt'),
+        const taskData = JSON.stringify({
+            id: $('.myteam-task-details-up .card').data('tsk-id'),
             comment: ref.val()
-        }
+        })
+        console.log(taskData)
+        return false
 
         //function options for common ajax
         const funcOptions = {
@@ -653,7 +653,7 @@ class CommonFunctionClass extends CustomWork {
             type: 'post',
             dataType: '',
             beforeSend: false,
-            contentType: '',
+            contentType: 'application/json',
             data: true,
             responseBack: '',
             selector: '.', // . | #
@@ -707,7 +707,7 @@ class CommonFunctionClass extends CustomWork {
         if(parseInt(getTaskResponse) == 200){
 
             //#### INVOKE SEND DATA
-            sendData(NotesDataList, funcOptionsNoteList )
+            //sendData(NotesDataList, funcOptionsNoteList )
 
             //#### REMOVE COMMENT TEXT
             ref.val('')
@@ -1002,6 +1002,48 @@ class CommonFunctionClass extends CustomWork {
 
         sendData(TaskData,funcTaskChangeStatus)
     }
+
+    //#### REQUEST TO UPDATE DATE OF TASK
+    requestToUpdateDate(dateValue) {
+        
+        const fromDate = $.trim(dateValue.split("-")[0])
+        const toDate = $.trim(dateValue.split("-")[1])
+
+        //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
+        //grab all fields values and arrange to send to serve by our controller
+        const taskData = JSON.stringify({
+            fromDate,
+            toDate,
+            task_id: $('.myteam-task-details-up .card').attr('data-tsk-id')
+        })
+
+        //function options for common ajax
+        const funcOptionsUserList = {
+            url: '/dashboard/tasks/detail/date/update',
+            type: 'POST',
+            dataType: '',
+            beforeSend: false,
+            contentType: 'application/json',
+            data: true,
+            responseBack: 'myteam-task-details-up',
+            selector: '.', // . | #
+            domElem: '', //span , div, etc
+            domManipulation: false,
+            domClick: '',
+            domCloseClass: '',
+            responseElem: {
+                domElem: {},
+                domSelector: {}
+            },
+            modelDom: {},
+            custom: false
+        }
+
+        sendData(taskData,funcOptionsUserList)
+
+    }
+
+
 }
 
 

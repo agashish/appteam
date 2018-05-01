@@ -7,7 +7,7 @@
     "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "engines":{
+  "engines": {
     "node": "9.3.0"
   },
   "keywords": [
@@ -21,9 +21,10 @@
   "dependencies": {
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
-    "cookie-parser": "^1.4.3", 
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "express-partial": "^0.1.0",
     "jsonwebtoken": "^8.2.0",
     "moment": "^2.21.0",
     "mongoose": "^5.0.12"

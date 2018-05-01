@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const moment = require('moment')
 
 const taskSchema = mongoose.Schema({
     task_name: {
@@ -10,7 +11,7 @@ const taskSchema = mongoose.Schema({
     },
     user_id: {
         require: true,
-        type: Number
+        type: String
     },
     project_id: {
         type: Number,
@@ -29,15 +30,34 @@ const taskSchema = mongoose.Schema({
         default: 1
     },
     date: {
-        type: date 
+        type: String,
+        default: moment().format('MM/DD/YY h:mm:ss a')
     }
 })
 
-/*//#### SAVE THROUGH USER MODEL
-            $taskModel->task_name = trim($task_name);
-            $taskModel->user_id = $this->user()->id;
-            $taskModel->project_id = 0;
-            $taskModel->task_id = 0;
-            $taskModel->status = 1;
-            $taskModel->is_deleted = 1;
-            $taskModel->date = date('Y-m-d');*/
+taskSchema.statics.getTaskList = function(cb) {
+
+    const task = this
+    task.find({status: 1, is_deleted: 1}).exec((err, tasks) => {
+        if(err){
+            return cb(err)
+        }    
+        return cb(null, tasks)
+    })
+}
+
+
+taskSchema.statics.getTaskDetailById = function(taskId, cb) {
+    const task = this
+
+    task.findById({'_id':taskId}).exec((err, detail) => {
+        if(err){
+            return cb(err)
+        }
+        return cb(null, detail)
+    })
+}
+
+const Task = mongoose.model('Task' , taskSchema)
+
+module.exports = {Task}

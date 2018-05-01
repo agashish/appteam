@@ -19,7 +19,7 @@
     <!-- End emoji-picker JavaScript -->
 
 	 <script>
-      $(function() {
+      /*$(function() {
         // Initializes and creates emoji set from sprite sheet
         window.emojiPicker = new EmojiPicker({
           emojiable_selector: '[data-emojiable=true]',
@@ -30,20 +30,14 @@
         // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
         // It can be called as many times as necessary; previously converted input fields will not be converted again
         window.emojiPicker.discover();
-      });
+      });*/
     </script>
 
     <!-- sparkline -->
     <script type="text/javascript" src="/js/plugins/sparkline/jquery.sparkline.min.js"></script>
     <script type="text/javascript" src="/js/plugins/sparkline/sparkline-script.js"></script>
     
-   <script type="text/javascript" src="/js/editor.js"></script>
-		<script>
-		
-			$(document).ready(function() {
-				$("#txtEditor").Editor();
-			});
-		</script>
+   
 
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
@@ -71,3 +65,9 @@
     <script type="text/javascript" src="/js/core_env.js"></script>
     <script type="text/javascript" src="/js/classes/dashboard/common_classes.js"></script>
     <script type="text/javascript" src="/js/classes/dashboard/common_dashboard.js"></script>
+    <script type="text/javascript" src="/js/editor.js"></script>
+	
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    

@@ -8,6 +8,11 @@ let hileDefaultElem = () => {
     $('.myteam-dropdown-box').find('.myteam-contacts-userpicker').hide()
     $('div.myteam-dropdown-box-search').hide()
     $('div.myteam-dropdown-box-search').find('ul.list-serach').html('')
+
+    //hide at first time
+    $('.myteam-task-details-up').css({
+        'display': 'none'
+    })
 }
 
 $(function(){
@@ -62,13 +67,15 @@ $(function(){
     })
 
     //#### ADD NEW TASK AND ADD INPUT BOX
-    $( "li.myteam-advpTask" ).on('click' , () => {
+    $( document ).on('click' , 'li.myteam-advpTask' , () => {
         (new CommonFunctionClass()).openInputForAddTask()
     })
 
     //#### IF USER CLICK SOMEWHERE EXCEPT INPUT BOX THEN WILL REVERT IT BACK INSTANTLY
-    $('body').click((evt) => {
+    $(document).click((evt) => {
+
         if(!$(evt.target).is('.task_name_input')) {
+
             //event handling code
             $( "li.myteam-advpTask-input" ).not( ".myteam-advpTask" ).find('span.myteam-new-at-task').html('Add New Task')
             $( "li.myteam-advpTask-input" ).not( ".myteam-advpTask" ).addClass('myteam-advpTask').removeClass('myteam-advpTask-input')
@@ -76,24 +83,29 @@ $(function(){
         }
         else {
 
-            $('#task_name').keydown(function(e) {
-                if (e.keyCode == 13) {
-                    e.preventDefault();
-
-                    //SAVE ON CLICK ENTER AND SAVE A NEW TASK WITH DEFAULT OPTIONS
-                    (new CommonFunctionClass()).addNewTaskOnClick($(this))
-                }
-            });
         }
     })
 
+    //#### ADD NEW TASK INPUT
+    $( document ).on('keydown' , '#task_name' , function(e) {        
+        if (e.keyCode == 13) {
+            e.preventDefault();
+
+            //SAVE ON CLICK ENTER AND SAVE A NEW TASK WITH DEFAULT OPTIONS
+            (new CommonFunctionClass()).addNewTaskOnClick($(this))
+            $(document).click()
+        }
+
+    });
+
     //#### JUST CLICK INVOKINGS
-    $("body").on('click','ul li.myteam-task-row',function(){
+    $(document).on('click','ul li.myteam-task-row',function(){
         (new CommonFunctionClass()).requestForTaskDetail($(this))
+        $(".myteam-task-details-up").attr('style', 'display:block')   
     })
 
     //#### CLICK EVENT ON TEAM ASSIGN DROWDOWN
-    $("body").on('click','div.my_team_plus',function(){
+    $(document).on('click','div.my_team_plus',function(){
 
         //FOR PRECAUTION
         //#### BLANK HTML
@@ -131,7 +143,7 @@ $(function(){
     })
 
     //#### CLICK EVENT ON PROJECT LIST
-     $("body").on('click','.chs-tsk-dls-prj-nm-anchor',function(){
+     $(document).on('click','.chs-tsk-dls-prj-nm-anchor',function(){
          //#### FOR PRECAUTION
          //#### BLANK HTML
          $('.myteam-dropdown-box-prj_off').find('ul.list').html('')
@@ -169,7 +181,7 @@ $(function(){
      })
 
     //#### SAVE THE COMMENT
-    $('body').click((evt) => {
+    $(document).click((evt) => {
         if(!$(evt.target).is('.team-task-comment')) {
             //event handling code
         }
@@ -180,7 +192,6 @@ $(function(){
                     e.preventDefault();
 
                     //SAVE ON CLICK ENTER AND SAVE A NEW TASK WITH DEFAULT OPTIONS
-                    //(new CommonFunctionClass()).addNewTaskOnClick($(this))
                     alert('invoked pressed')
                 }
             });
@@ -188,7 +199,7 @@ $(function(){
     })
 
     //#### SELECT NON ASSIGN USER FOR TASK
-    $("body").on('click','ul li.assgn-user-select',function(){
+    $(document).on('click','ul li.assgn-user-select',function(){
         (new CommonFunctionClass()).requestAssignUserToTask($(this))
 
         //#### REMOVE AND HIDE USER SELECT DROPDOWN WITH INPUT BOX
@@ -203,7 +214,7 @@ $(function(){
     })
 
     //#### SELECT NON ASSIGN FOLDER FOR TASK
-    $("body").on('click','ul li.assgn-proj-select',function(){
+    $(document).on('click','ul li.assgn-proj-select',function(){
         (new CommonFunctionClass()).requestAssignProjectToTask($(this))
 
         //#### REMOVE AND HIDE USER SELECT DROPDOWN WITH INPUT BOX
@@ -218,26 +229,27 @@ $(function(){
     })
 
     //#### SAVE NOTES FOR TASK
-    $('body').click((evt) => {
+    $(document).click((evt) => {
         if(!$(evt.target).is('.team-sv-ntt')) {
             //event handling code
         }
         else {
-
-            $('.team-sv-ntt').keydown(function(e) {
-                if (e.keyCode == 13) {
-                    e.preventDefault();
-                    //alert('yep')
-                    //SAVE ON CLICK ENTER AND SAVE A NEW TASK WITH DEFAULT OPTIONS
-                    (new CommonFunctionClass()).saveNote($(this))
-                }
-            });
         }
     })
 
+    $(document).on('keydown', '.team-sv-ntt', (function(e) {
+
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            
+            //SAVE ON CLICK ENTER AND SAVE A NEW TASK WITH DEFAULT OPTIONS
+            (new CommonFunctionClass()).saveNote($(this))
+        }
+    }));
+
     //#### SEARCH INTO TASK AND COMMENT
     //#### SAVE NOTES FOR TASK
-    $('body').click((evt) => {
+    $(document).click((evt) => {
         if(!$(evt.target).is('.team-srch-tt-cmnt')) {
             //event handling code
             //hide and remove serach list
@@ -264,7 +276,7 @@ $(function(){
         }
     })
 
-    $('body').click((evt) => {
+    $(document).click((evt) => {
         if(!$(evt.target).is('.myteam-seacrh-box')) {
             //event handling code
             $('.myteam-dropdown-box-prj_off').find('ul.list').html('')
@@ -292,7 +304,7 @@ $(function(){
 
     //FOR KEY UP
     //#### SELECT NON ASSIGN USER FOR TASK
-    $("body").on('keyup','.team-srch-tt-cmnt',function(){
+    $(document).on('keyup','.team-srch-tt-cmnt',function(){
 
         let getText = $.trim($(this).val()).length
 
@@ -303,14 +315,14 @@ $(function(){
 
     //FOR click
     //#### DELETE USER LIST #######
-    $("body").on('click','.user-delete',function(){
+    $(document).on('click','.user-delete',function(){
             (new CommonFunctionClass()).requestForDeleteAssignedUser($(this))
     })
 
 
     //FOR click
     //#### DELETE PROJECT LIST #######
-    $("body").on('click','.project-delete',function(){
+    $(document).on('click','.project-delete',function(){
         (new CommonFunctionClass()).requestForDeleteAssignedProject($(this))
     })
 
