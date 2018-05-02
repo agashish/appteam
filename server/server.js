@@ -126,7 +126,8 @@ app.get('/dashboard' , auth, (req, res) => {
                         teams: user,
                         category: req.category,
                         project: req.project,
-                        tasks: tasks
+                        tasks: tasks,
+                        notes: true
                     })
                 })
             })
@@ -431,13 +432,24 @@ app.post('/dashboard/tasks/detail', auth ,  (req, res) => {
             return res.status(400).send(err)
         }            
 
-        //#### SET THE VIEW OF TASK DETAIL PAGE
-        res.render('dashboard/tasks/task_detail', {
-            layout: null,
-            taskDetail
+        //#### GET ALL NOTES ACCORDING TO TASK_ID
+        Notes.find({
+                'task_id':req.body.id,
+                'status': 0,
+                'isDeleted': 0
+            }            
+        )
+        .exec((err, notes) => {
+
+            //#### SET THE VIEW OF TASK DETAIL PAGE
+            res.render('dashboard/tasks/task_detail', {
+                layout: null,
+                taskDetail,
+                notes: false,
+                noteList: notes
+            })
         })
     })
-
 })
 
 //#### UPDATE OF PARTICULAR TASK
@@ -447,15 +459,24 @@ app.post('/dashboard/tasks/detail/date/update', auth ,  (req, res) => {
         return res.redirect('/login')
     }
 
-    Task.findByIdAndUpdate({'_id':req.body.task_id}, {
-        fromDate: req.body.fromDate,
-        toDate: req.body.toDate
-    }).exec((err, doc) => {
+    Task.findById({'_id':req.body.task_id}, (err, task) => {
+        
         if(err){
-            return res.status(400).send(err)
+            return res.status(400).send(err)        
         }
 
-        res.status(200).send(req.body)
+        //#### UPDATE THE TASK WITH DATES
+        task.fromDate = moment(req.body.fromDate).format("DD-MM-YYYY")
+        task.toDate = moment(req.body.toDate).format("DD-MM-YYYY")
+
+        task.save((err, task) => {
+            if(err){
+                return res.status(400).send(err)
+            }
+
+            res.status(200).send({message:'updated', status: 200})
+        })
+
     })
 })
 
@@ -467,7 +488,21 @@ app.post('/dashboard/task/add/notes', auth , (req, res) => {
         return res.redirect('/login')
     }
 
-    res.status(200).send(req.body)
+    //#### SET THE SCHEMA WITH NOTES MODEL CONSTRUCTOR
+    const note = new Notes({
+        task_id: req.body.id,
+        notes: req.body.comment,
+        user_id: req.user._id     
+    })
+
+    //#### NOW SAVE INTO NOTES COLLECTION
+    note.save((err, note) => {
+        if(err){
+            return res.status(400).send(err)
+        }
+        
+        res.status(200).send({message:'Note Added', status: 200})
+    })
 
 })
 //#### LISTENING THE SERVER PORT

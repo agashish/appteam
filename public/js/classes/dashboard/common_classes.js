@@ -644,8 +644,6 @@ class CommonFunctionClass extends CustomWork {
             id: $('.myteam-task-details-up .card').data('tsk-id'),
             comment: ref.val()
         })
-        console.log(taskData)
-        return false
 
         //function options for common ajax
         const funcOptions = {

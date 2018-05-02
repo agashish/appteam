@@ -10,7 +10,8 @@ const notesSchema = mongoose.Schema({
         require: true,
         type: String,
         maxlength: 100,
-        minlength: 25
+        minlength: 1,
+        trim: true
     },
     status:{
         type: Number,
@@ -19,6 +20,14 @@ const notesSchema = mongoose.Schema({
     isDeleted: {
         default: 0,
         type: Number
+    },
+    date: {
+        type: String,
+        default: moment().format('DD/MM/YY h:mm:ss a')
+    },
+    user_id: {
+        type: String,
+        require: true
     }
 })
 

@@ -31,7 +31,13 @@ const taskSchema = mongoose.Schema({
     },
     date: {
         type: String,
-        default: moment().format('MM/DD/YY h:mm:ss a')
+        default: moment().format('DD/MM/YY h:mm:ss a')
+    },
+    fromDate: {
+        type: String
+    },
+    toDate: {
+        type: String
     }
 })
 

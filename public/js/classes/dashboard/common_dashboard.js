@@ -19,7 +19,7 @@ $(function(){
 
     //#### DEFAULT HIDE ELEMENTS
     hileDefaultElem()
-
+    
     //#### SET CSRF TOKEN INTO AJAX REQUEST
     $.ajaxSetup({
         headers: {
@@ -103,6 +103,10 @@ $(function(){
         (new CommonFunctionClass()).requestForTaskDetail($(this))
         $(".myteam-task-details-up").attr('style', 'display:block')   
     })
+    
+    //#### CLICK ON FIRST TASK
+    let taskListLength = $('ul.taskList li').size()
+    $('ul.taskList li:first').click()
 
     //#### CLICK EVENT ON TEAM ASSIGN DROWDOWN
     $(document).on('click','div.my_team_plus',function(){
@@ -237,6 +241,7 @@ $(function(){
         }
     })
 
+    //#### SAVE NOTE FOR THE TASK
     $(document).on('keydown', '.team-sv-ntt', (function(e) {
 
         if (e.keyCode == 13) {
@@ -370,5 +375,4 @@ $(function(){
     $("body").on('change','#data-status',function(){
         (new CommonFunctionClass()).requestForTaskChangeStatus($(this))
     })
-
-}) 
+})
