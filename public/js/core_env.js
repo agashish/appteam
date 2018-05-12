@@ -17,7 +17,7 @@ let globalBool = {
 
 let sendData = ( sendDataObject , ajaxOptionObject ) => {
 
-    //###### create ajax instance
+    //###### create ajax instance    
     if( ajaxOptionObject.data == true && ajaxOptionObject.dataType == 'json' ){        
         return ajaxInstanceWithData(sendDataObject , ajaxOptionObject )
     }
@@ -124,10 +124,9 @@ let refereshCommentForResponseTick = (ajaxOptionObject , response) => {
 
 //######## IF ADD NON ASSIGN USER LIST MANIPULATION IS TRUE THEN WILL TRIGGER DIFFERENT FUNCTION
 let refereshNotesList = (ajaxOptionObject , response) => {
-    if(ajaxOptionObject.notesDisplay == true) {
+    if(ajaxOptionObject.notesDisplay == true) {        
         //#### ADD NEW REFRESH DATA
         $(ajaxOptionObject.domElem+ajaxOptionObject.selector+ajaxOptionObject.responseBack).html(response)
-        //console.log('Waiting for response tick into editor area but will do later')
     }
 }
 

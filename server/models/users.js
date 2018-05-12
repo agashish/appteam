@@ -16,9 +16,8 @@ const userSchema = mongoose.Schema({
     },
     username: {
         type: String,
-        require: true,
         trim: true,
-        minlength: 1,
+        maxlength: 25,
         unique: 1
     },
     phonenumber: {
@@ -45,7 +44,8 @@ const userSchema = mongoose.Schema({
     },
     token: {
         type: String
-    }
+    },
+    _id: mongoose.Schema.Types.ObjectId
 })
 
 //#### NEW MIDDLEWARE FOR SAVING AND CREATING HASH FOR GIVEN PASSWORD
@@ -125,6 +125,16 @@ userSchema.methods.comparePassword = function (textPassword , cb) {
 }
 
 userSchema.statics.getTeamList = function(reqUser , cb) {
+    var user = this
+    user.find().exec((err, user) => {
+        if(err){
+            return cb(err)
+        }
+        return cb(null, user)
+    })
+}
+
+userSchema.statics.getUserList = function(cb) {
     var user = this
     user.find().exec((err, user) => {
         if(err){

@@ -1,0 +1,40 @@
+<div class="asgn_usr_lst">
+    <!-- class="search" automagically makes an input a search field. -->
+    <div class="my-team-dropdown-main">
+        <input class="search myteam-seacrh-box" placeholder="Search" />
+    </div>
+        <!-- Child elements of container with class="list" becomes list items -->
+    <div class="myteam-contacts-userpicker myteam-contacts-userpicker-usr-lst assignees-picker wrike-pickerfield">
+        <div >
+            <ul class="list">
+                {{#each userList}}
+                    <li class="assgn-user-select" data-ut-id="{{this._id}}">
+                        <div class="user-item has-groups">
+                            <div class="user-item-wrap">
+                                <div class="user-item-overflow">
+                                    <div class="user-item-userpic"><img src="images/img.jpg" alt="picture" /></div>
+                                    <div class="user-item-info">
+                                        <div class="info-name">{{this.firstname}}</div>
+                                        <div class="info-email-groups">
+                                            <div class="info-email">{{this.email}}</div>
+                                            <div class="user-item-grouppic"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {{/each}}    
+            </ul>
+        </div>
+    </div>
+</div>
+    
+<script>
+
+    var options = {
+        valueNames: [ 'info-name', 'info-email' ]
+    };
+
+    var userList = new List('users', options);
+</script>

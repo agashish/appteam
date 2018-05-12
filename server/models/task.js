@@ -34,10 +34,21 @@ const taskSchema = mongoose.Schema({
         default: moment().format('DD/MM/YY h:mm:ss a')
     },
     fromDate: {
-        type: String
+        type: String,
+        default: '00-00-0000'
     },
     toDate: {
+        type: String,
+        default: '00-00-0000'
+    },
+    description: {
         type: String
+    },
+    _id: mongoose.Schema.Types.ObjectId,
+    user:{
+        require: true,
+        type:  mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 })
 

@@ -26,6 +26,13 @@ const app = express()
 app.use(partials())
 app.use(express.static(__dirname + '../public'));
 
+//#### TO PREVENT BROWSER THROW AN ERRO TO MAKE COSS ORIGIN REQUEST
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 //#### GET THE MIDDLEWARE 
 const middleware = require('./middleware/common_middleware/middleware')
 const {auth} = require('./middleware/auth/auth')
@@ -52,6 +59,37 @@ const {Project} = require('./models/project')
 const {Task} = require('./models/task')
 const {Notes} = require('./models/notes')
 
+//#### MOST IMPORTAN NOTE ####################
+// As Neil mentioned in the comments, Mongoose will automatically convert strings to ObjectIds when appropriate. However, the root cause of your problem is that you're using the wrong ObjectId class. Mongoose actually provides two different classes with the same name:
+// mongoose.Schema.Types.ObjectId
+// mongoose.Types.ObjectId
+// You should use the first one when defining schemas and the second one when explicitly creating ObjectIds for queries. Replacing the one line where you define ObjectId fixes your code:
+
+// var mongoose = require('mongoose');
+// var ObjectId = mongoose.Types.ObjectId;
+
+// //Here I have req.query.where: "591f47d10d957323386f0c42".
+// var qrySearch={"_id": new ObjectId(req.query.where)};
+//     Ag_escalaatendimento.find(qrySearch)
+//     .exec( (err,data) => {
+//        callback(err,data,res)
+//     })
+// });As Neil mentioned in the comments, Mongoose will automatically convert strings to ObjectIds when appropriate. However, the root cause of your problem is that you're using the wrong ObjectId class. Mongoose actually provides two different classes with the same name:
+// mongoose.Schema.Types.ObjectId
+// mongoose.Types.ObjectId
+// You should use the first one when defining schemas and the second one when explicitly creating ObjectIds for queries. Replacing the one line where you define ObjectId fixes your code:
+
+// var mongoose = require('mongoose');
+// var ObjectId = mongoose.Types.ObjectId;
+
+// //Here I have req.query.where: "591f47d10d957323386f0c42".
+// var qrySearch={"_id": new ObjectId(req.query.where)};
+//     Ag_escalaatendimento.find(qrySearch)
+//     .exec( (err,data) => {
+//        callback(err,data,res)
+//     })
+// });
+//############################################
 //#### LOAD GET ROUTE
 app.get('/' , auth , (req, res) => {
 
@@ -62,7 +100,6 @@ app.get('/' , auth , (req, res) => {
     })
     
 })
-
 app.get('/login' , auth ,(req, res) => {
 
     if(req.user) return res.redirect('/dashboard')
@@ -71,7 +108,6 @@ app.get('/login' , auth ,(req, res) => {
         layout: 'login/login_master'
     })
 })
-
 app.get('/register' , auth, (req, res) => {
 
     if(req.user) return res.redirect('/dashboard')
@@ -140,6 +176,7 @@ app.post('/api/register' , auth, (req, res) => {
     
     //#### SET USER REGISTER DATA
     const user = new User({
+        _id: new mongoose.Types.ObjectId(),
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         username: req.body.username,
@@ -227,6 +264,7 @@ app.post('/dashboard/add/user' , auth , (req , res) => {
 
     //#### FOR SAVING TEAM MEMBER    
     const user = new User({
+        _id: new mongoose.Types.ObjectId(),
         firstname:  req.body.firstname,
         username: req.body.email,
         email: req.body.email,
@@ -387,8 +425,10 @@ app.post('/dashboard/add/new/task' , auth , (req, res) => {
         return res.redirect('/login')
     }
     const task = new Task({
+        _id: new mongoose.Types.ObjectId(),
         task_name: req.body.task_name,
-        user_id: req.user._id
+        user_id: req.user._id,
+        user: req.user._id
     })
 
     task.save((err, task) =>{
@@ -434,7 +474,7 @@ app.post('/dashboard/tasks/detail', auth ,  (req, res) => {
 
         //#### GET ALL NOTES ACCORDING TO TASK_ID
         Notes.find({
-                'task_id':req.body.id,
+                'task':req.body.id,
                 'status': 0,
                 'isDeleted': 0
             }            
@@ -446,7 +486,8 @@ app.post('/dashboard/tasks/detail', auth ,  (req, res) => {
                 layout: null,
                 taskDetail,
                 notes: false,
-                noteList: notes
+                noteList: notes,
+                user: req.user
             })
         })
     })
@@ -490,21 +531,124 @@ app.post('/dashboard/task/add/notes', auth , (req, res) => {
 
     //#### SET THE SCHEMA WITH NOTES MODEL CONSTRUCTOR
     const note = new Notes({
-        task_id: req.body.id,
+        _id: new mongoose.Types.ObjectId(),
+        task: req.body.id,
         notes: req.body.comment,
-        user_id: req.user._id     
+        user_id: req.user._id,
+        user: req.user._id    
     })
 
     //#### NOW SAVE INTO NOTES COLLECTION
     note.save((err, note) => {
         if(err){
             return res.status(400).send(err)
-        }
-        
+        }        
         res.status(200).send({message:'Note Added', status: 200})
     })
+})
+
+app.post('/dashboard/task/notes/list', auth, (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login')
+    }
+
+    const tsk_id = req.header('X-TSK-ID')
+
+    //#### GET ALL NOTES ACCORDING TO TASK_ID
+    Notes.find({
+            'task':tsk_id,
+            'status': 0,
+            'isDeleted': 0
+        }            
+    )
+    .exec((err, notes) => {
+
+        //#### SET THE VIEW OF TASK DETAIL PAGE
+        res.render('dashboard/notes/notes', {
+            layout: null,
+            notes: false,
+            user: req.user,
+            noteList: notes
+        })
+    })
+})
+
+//#### INVOKE TO UPDATE AND SAVE COMMENT ROUTE
+app.post('/dashboard/task/add-update/comment' , auth , (req, res) => {
+
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+
+    Task.findById({'_id':req.body.id}, (err, task) => {
+        
+        if(err){
+            return res.status(400).send(err)        
+        }
+
+        //#### UPDATE THE TASK WITH DATES
+        task.description = req.body.description
+
+        task.save((err, task) => {
+            if(err){
+                return res.status(400).send(err)
+            }
+
+            res.status(200).send({message:'Description updated', status: 200})
+        })
+    })
+})
+
+//#### Request for assign user list
+app.post('/dashboard/assign/user/list' , auth , (req, res) => {
+
+    if(!req.user){
+        return res.redirect('/login')
+    }
+
+    //#### GET ID FROM HEADER
+    const id = req.header('X-TSK-ID')
+
+    // Notes.find().populate('task').exec((err, notes) =>{
+    //     return res.status(200).send(notes)
+    // })
+
+    //#### GET USER LIST
+    User.getUserList((err, users) => {
+        if(err){
+            return res.status(400).send(err)
+        }
+        
+        res.removeHeader('Transfer-Encoding');
+        res.removeHeader('X-Powered-By');
+        res.render('dashboard/user_list/user_list', {
+            layout: null,
+            userList: users
+        })
+    })
+})
+
+app.get('/dashboard/:userid/detail', (req, res) => {
+    res.end('Hello')
+})
+
+//####################################################
+    //#### ASSING USER TO SPECIFC TASK
+//####################################################
+app.post('/dashboard/assign/user/task', auth, (req, res) => {
+
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+
+    //#### REMOVE HEADERS
+    res.removeHeader('Transfer-Encoding');
+    res.removeHeader('X-Powered-By');
+    res.removeHeader('X-TSK-ID');
 
 })
+
 //#### LISTENING THE SERVER PORT
 app.listen(config.PORT , () => {
     console.log(`Server is running at ${config.PORT}`)

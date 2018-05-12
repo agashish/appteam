@@ -2,9 +2,16 @@ const mongoose = require('mongoose')
 const moment = require('moment')
 
 const notesSchema = mongoose.Schema({
-    task_id : {
+    _id: mongoose.Schema.Types.ObjectId,
+    task : {
         require: true,
-        type: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Task'
+    },
+    user: {
+        require: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     notes: {
         require: true,

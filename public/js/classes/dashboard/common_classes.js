@@ -93,7 +93,7 @@ class CommonFunctionClass extends CustomWork {
         const funcOptions = {
             url: '/dashboard/add/user',
             type: 'POST',
-            dataType: 'json',
+            dataType: '',
             beforeSend: false,
             contentType: 'application/json',
             data: true,
@@ -521,13 +521,18 @@ class CommonFunctionClass extends CustomWork {
     }
 
     //#### INVOKE GET USER LIST BY DEFAULT
-    requestForAssignUserList(ref) {
+    requestForAssignUserList() {
 
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         //grab all fields values and arrange to send to serve by our controller
-        const taskData = {
-            id: ref.attr('data-task-id')
-        }
+        const taskData = null
+
+        //#### SET HEADER WITH SOME VALUES
+        $.ajaxSetup({
+            headers: {
+                'X-TSK-ID': $('.myteam-task-details-up .card').data('tsk-id')
+            }
+        });
 
         //function options for common ajax
         const funcOptionsUserList = {
@@ -565,20 +570,18 @@ class CommonFunctionClass extends CustomWork {
 
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         //grab all fields values and arrange to send to serve by our controller
-        const taskData = {
+        const assignUserData = JSON.stringify({
             id: ref.data('ut-id'),
-            task_id: $('div.my_team_add_team').attr('data-tt-dflt')
-        }
+            task_id: $('.myteam-task-details-up .card').data('tsk-id')
+        })
 
-        //function options for common ajax
         const funcOptionsUser = {
             url: '/dashboard/assign/user/task',
             type: 'POST',
             dataType: '',
             beforeSend: false,
-            contentType: '',
+            contentType: 'application/json',
             data: true,
-            async: false,
             responseBack: 'my_team_add_team',
             selector: '.', // . | #
             domElem: '', //span , div, etc
@@ -594,12 +597,13 @@ class CommonFunctionClass extends CustomWork {
             taskList: false
         }
 
-        var getTaskResponse = sendData(taskData, funcOptionsUser)
-        this.refreshAssignUserListToTask(getTaskResponse)
+        var getTaskResponse = sendData(assignUserData, funcOptionsUser)
+        alert(getTaskResponse)
+        //this.refreshAssignUserListToTask(getTaskResponse)
 
     }
 
-    requestUpdateDescriptionByTaskId(refHtml) {
+    requestUpdateDescriptionByTaskId_6_may(refHtml) {
         //console.log(decodeURIComponent(refHtml))
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         //grab all fields values and arrange to send to serve by our controller
@@ -670,23 +674,27 @@ class CommonFunctionClass extends CustomWork {
         //######## CALL AJAX COMMON FUNCTION TO SEND AND RETREIVE RESPONSES
         //params : data
         //params : func
-        var getTaskResponse = sendData(taskData, funcOptions)
-
+        var getTaskResponse = sendData(taskData, funcOptions)        
         //#### GET THE USER LIST
         //#### ADD HTML TYPE TO SET THE DATA AGAIN
-        const NotesDataList = {
-            id: $('div.my_team_add_team').data('tt-dflt'),
-        }
+        const NotesDataList = null
 
+        //#### SET HEADER WITH SOME VALUES
+        $.ajaxSetup({
+            headers: {
+                'X-TSK-ID': $('.myteam-task-details-up .card').data('tsk-id')
+            }
+        });
+        
         //function options for common ajax
         const funcOptionsNoteList = {
             url: '/dashboard/task/notes/list',
-            type: 'POST',
+            type: 'post',
             dataType: 'html',
             beforeSend: false,
             contentType: '',
             data: true,
-            responseBack: 'tk-ntts',
+            responseBack: 'team-ntt-shw-hre',
             selector: '.', // . | #
             domElem: '', //span , div, etc
             domManipulation: false,
@@ -705,7 +713,7 @@ class CommonFunctionClass extends CustomWork {
         if(parseInt(getTaskResponse) == 200){
 
             //#### INVOKE SEND DATA
-            //sendData(NotesDataList, funcOptionsNoteList )
+            sendData(NotesDataList, funcOptionsNoteList )
 
             //#### REMOVE COMMENT TEXT
             ref.val('')
@@ -714,6 +722,46 @@ class CommonFunctionClass extends CustomWork {
             console.log('error invoked')
             return false
         }
+    }
+
+    //#### SAVE AND UPDATE COMMENT BY TASK ID
+    requestUpdateDescriptionByTaskId() {
+
+        //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
+        const taskData = JSON.stringify({
+            id: $('.myteam-task-details-up .card').data('tsk-id'),
+            description: $("#txtEditor").Editor('getText')
+        })
+
+        alert($("#txtEditor").Editor('getText'))
+        return false
+        
+        //function options for common ajax
+        const funcOptions = {
+            url: '/dashboard/task/add-update/comment',
+            type: 'post',
+            dataType: '',
+            beforeSend: false,
+            contentType: 'application/json',
+            data: true,
+            responseBack: '',
+            selector: '.', // . | #
+            domElem: '', //span , div, etc
+            domManipulation: false,
+            addInput: false,
+            responseElem: {
+                domElem: {},
+                domSelector: {}
+            },
+            modelDom: {},
+            ajaxModel: false,
+            rmvSelector: {}
+        }
+
+        //######## CALL AJAX COMMON FUNCTION TO SEND AND RETREIVE RESPONSES
+        //params : data
+        //params : func
+        var getTaskResponse = sendData(taskData, funcOptions)
     }
 
     //#### INVOKE GET USER LIST BY DEFAULT

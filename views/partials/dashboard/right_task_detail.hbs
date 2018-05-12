@@ -34,8 +34,8 @@
                                             <span>Ashutosh Kumar</span>
                                             </div>
                                             
-                                            <div class="my_team_plus"><a href="#"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
-                                        
+                                            <div class="my_team_plus"><a href="javascript:void(0)"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
+                                            <div id="users"></div>
                                         
                                         </div>
                                         
@@ -74,7 +74,8 @@
 									<!-- Text Editor Start Here -->
 									<div class="row">
 										<div class="nopadding">
-											<textarea id="txtEditor"></textarea> 
+											{{!-- <textarea id="txtEditor"></textarea>  --}}
+                                            <textarea name="description" class="form-control ckeditor" id="description"></textarea>
 										</div>
 									</div>
 									<!-- Text Editor End Here -->
@@ -104,10 +105,22 @@
 
 <script>
   $(document).ready(function() {
-    $("#txtEditor").Editor();
-    
+    /*$("#txtEditor").Editor();    
     if($("div.Editor-container").size() > 1)
-    $("div.Editor-container:first").remove()
+    $("div.Editor-container:first").remove()*/
+
+    /*try {
+        CKEDITOR.instances['description'].destroy(true);
+    } catch (e) { }
+    CKEDITOR.replace('description');
+
+    //#### SELECT NON ASSIGN USER FOR TASK
+    CKEDITOR.instances['description'].on( 'change', function(e){
+
+        var value = encodeURIComponent(CKEDITOR.instances['description'].getData());
+        setTimeout(() => { (new CommonFunctionClass()).requestUpdateDescriptionByTaskId(value) }, 800)
+
+    });*/
     
   });
 </script> 

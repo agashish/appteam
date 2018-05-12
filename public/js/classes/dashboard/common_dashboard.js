@@ -8,7 +8,8 @@ let hileDefaultElem = () => {
     $('.myteam-dropdown-box').find('.myteam-contacts-userpicker').hide()
     $('div.myteam-dropdown-box-search').hide()
     $('div.myteam-dropdown-box-search').find('ul.list-serach').html('')
-
+    $(  ".asgn_usr_lst" ).hide()
+    
     //hide at first time
     $('.myteam-task-details-up').css({
         'display': 'none'
@@ -40,7 +41,7 @@ $(function(){
 
         //#### JUST MAKE THE REQUEST TO OPEN MOADL BOX FOR STAFF POPUP
         (new CommonFunctionClass()).addNewStaff()
-
+        
     })
 
     //############# CALL DYNAMIC BLADE CONTENT INTO MODAL BOX
@@ -108,42 +109,61 @@ $(function(){
     let taskListLength = $('ul.taskList li').size()
     $('ul.taskList li:first').click()
 
-    //#### CLICK EVENT ON TEAM ASSIGN DROWDOWN
+    //#### CLICK EVENT ON TEAM ASSIGN DROWDOWN 
     $(document).on('click','div.my_team_plus',function(){
+       
+        //TRIGGER AJAX
+        (new CommonFunctionClass()).requestForAssignUserList()
+        
+        // //FOR PRECAUTION
+        // //#### BLANK HTML
+        // $('.myteam-dropdown-box').find('ul.list').html('')
+        // $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
+        // $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
 
-        //FOR PRECAUTION
-        //#### BLANK HTML
-        $('.myteam-dropdown-box').find('ul.list').html('')
-        $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
-        $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
+        // if($('.myteam-dropdown-box span').hasClass('on')){
+        //     $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
+        // }
 
-        if($('.myteam-dropdown-box span').hasClass('on')){
-            $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
-        }
+        // //#### CHECK VISIBILITY HIDDEN OR NOT
+        // if($('.myteam-dropdown-box span').hasClass('off'))
+        // {
+        //     //TRIGGER AJAX
+        //     (new CommonFunctionClass()).requestForAssignUserList($(this))
 
-        //#### CHECK VISIBILITY HIDDEN OR NOT
-        if($('.myteam-dropdown-box span').hasClass('off'))
-        {
-            //TRIGGER AJAX
-            (new CommonFunctionClass()).requestForAssignUserList($(this))
+        //     setTimeout(() => {
+        //         $('.myteam-dropdown-box').find('.myteam-seacrh-box').show()
+        //         $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').show()
+        //         $('.myteam-dropdown-box .off').addClass('on').removeClass('off')
+        //     }, 500)
+        // }
+        // else
+        // {
+        //     //#### BLANK HTML
+        //     $('.myteam-dropdown-box').find('ul.list').html('')
+        //     $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
+        //     $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
 
-            setTimeout(() => {
-                $('.myteam-dropdown-box').find('.myteam-seacrh-box').show()
-                $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').show()
-                $('.myteam-dropdown-box .off').addClass('on').removeClass('off')
-            }, 500)
-        }
-        else
-        {
-            //#### BLANK HTML
-            $('.myteam-dropdown-box').find('ul.list').html('')
-            $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
-            $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
+        //     if($('.myteam-dropdown-box span').hasClass('on')){
+        //         $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
+        //     }
+        // }
+    })
 
-            if($('.myteam-dropdown-box span').hasClass('on')){
-                $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
-            }
-        }
+    //#### SELECT NON ASSIGN USER FOR TASK
+    $(document).on('click','ul li.assgn-user-select',function(){
+
+        (new CommonFunctionClass()).requestAssignUserToTask($(this))
+
+        // //#### REMOVE AND HIDE USER SELECT DROPDOWN WITH INPUT BOX
+        // $('.myteam-dropdown-box').find('ul.list').html('')
+        // $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
+        // $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
+
+        // if($('.myteam-dropdown-box span').hasClass('on')){
+        //     $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
+        // }
+
     })
 
     //#### CLICK EVENT ON PROJECT LIST
@@ -202,20 +222,7 @@ $(function(){
         }
     })
 
-    //#### SELECT NON ASSIGN USER FOR TASK
-    $(document).on('click','ul li.assgn-user-select',function(){
-        (new CommonFunctionClass()).requestAssignUserToTask($(this))
-
-        //#### REMOVE AND HIDE USER SELECT DROPDOWN WITH INPUT BOX
-        $('.myteam-dropdown-box').find('ul.list').html('')
-        $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
-        $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
-
-        if($('.myteam-dropdown-box span').hasClass('on')){
-            $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
-        }
-
-    })
+    
 
     //#### SELECT NON ASSIGN FOLDER FOR TASK
     $(document).on('click','ul li.assgn-proj-select',function(){
@@ -283,25 +290,7 @@ $(function(){
 
     $(document).click((evt) => {
         if(!$(evt.target).is('.myteam-seacrh-box')) {
-            //event handling code
-            $('.myteam-dropdown-box-prj_off').find('ul.list').html('')
-            $('.myteam-dropdown-box-prj_off').find('.myteam-seacrh-box-project').hide()
-            $('.myteam-dropdown-box-prj_off').find('.myteam-contacts-userpicker-project-list').hide()
-
-            if($('.myteam-dropdown-box-prj_off span').hasClass('on')){
-                $('.myteam-dropdown-box-prj_off span.on').addClass('off').removeClass('on')
-            }
-
-            //event handling code
-            //hide and remove serach list
-            //#### BLANK HTML
-            $('.myteam-dropdown-box').find('ul.list').html('')
-            $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
-            $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
-
-            if($('.myteam-dropdown-box span').hasClass('on')){
-                $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
-            }
+            $('.asgn_usr_lst').hide()
         }
         else {}
     })
