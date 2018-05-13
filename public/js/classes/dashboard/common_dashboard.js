@@ -115,39 +115,6 @@ $(function(){
         //TRIGGER AJAX
         (new CommonFunctionClass()).requestForAssignUserList()
         
-        // //FOR PRECAUTION
-        // //#### BLANK HTML
-        // $('.myteam-dropdown-box').find('ul.list').html('')
-        // $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
-        // $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
-
-        // if($('.myteam-dropdown-box span').hasClass('on')){
-        //     $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
-        // }
-
-        // //#### CHECK VISIBILITY HIDDEN OR NOT
-        // if($('.myteam-dropdown-box span').hasClass('off'))
-        // {
-        //     //TRIGGER AJAX
-        //     (new CommonFunctionClass()).requestForAssignUserList($(this))
-
-        //     setTimeout(() => {
-        //         $('.myteam-dropdown-box').find('.myteam-seacrh-box').show()
-        //         $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').show()
-        //         $('.myteam-dropdown-box .off').addClass('on').removeClass('off')
-        //     }, 500)
-        // }
-        // else
-        // {
-        //     //#### BLANK HTML
-        //     $('.myteam-dropdown-box').find('ul.list').html('')
-        //     $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
-        //     $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
-
-        //     if($('.myteam-dropdown-box span').hasClass('on')){
-        //         $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
-        //     }
-        // }
     })
 
     //#### SELECT NON ASSIGN USER FOR TASK
@@ -155,53 +122,47 @@ $(function(){
 
         (new CommonFunctionClass()).requestAssignUserToTask($(this))
 
-        // //#### REMOVE AND HIDE USER SELECT DROPDOWN WITH INPUT BOX
-        // $('.myteam-dropdown-box').find('ul.list').html('')
-        // $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
-        // $('.myteam-dropdown-box').find('.myteam-contacts-userpicker-usr-lst').hide()
-
-        // if($('.myteam-dropdown-box span').hasClass('on')){
-        //     $('.myteam-dropdown-box span.on').addClass('off').removeClass('on')
-        // }
-
     })
 
     //#### CLICK EVENT ON PROJECT LIST
      $(document).on('click','.chs-tsk-dls-prj-nm-anchor',function(){
-         //#### FOR PRECAUTION
-         //#### BLANK HTML
-         $('.myteam-dropdown-box-prj_off').find('ul.list').html('')
-         $('.myteam-dropdown-box-prj_off').find('.myteam-seacrh-box-project').hide()
-         $('.myteam-dropdown-box-prj_off').find('.myteam-contacts-userpicker-project-list').hide()
 
-         if($('.myteam-dropdown-box-prj_off span').hasClass('on')){
-             $('.myteam-dropdown-box-prj_off span.on').addClass('off').removeClass('on')
-         }
+        (new CommonFunctionClass()).requestForProjectList($(this))
+        
+        //  //#### FOR PRECAUTION
+        //  //#### BLANK HTML
+        //  $('.myteam-dropdown-box-prj_off').find('ul.list').html('')
+        //  $('.myteam-dropdown-box-prj_off').find('.myteam-seacrh-box-project').hide()
+        //  $('.myteam-dropdown-box-prj_off').find('.myteam-contacts-userpicker-project-list').hide()
+
+        //  if($('.myteam-dropdown-box-prj_off span').hasClass('on')){
+        //      $('.myteam-dropdown-box-prj_off span.on').addClass('off').removeClass('on')
+        //  }
 
 
-         //#### CHECK VISIBILITY HIDDEN OR NOT
-         if($('.myteam-dropdown-box-prj_off span').hasClass('off'))
-         {
-             //#### REMOVE PREV HTML SOURCE FROM WEB
-             (new CommonFunctionClass()).requestForProjectList($(this))
+        //  //#### CHECK VISIBILITY HIDDEN OR NOT
+        //  if($('.myteam-dropdown-box-prj_off span').hasClass('off'))
+        //  {
+        //      //#### REMOVE PREV HTML SOURCE FROM WEB
+        //      (new CommonFunctionClass()).requestForProjectList($(this))
 
-             setTimeout(() => {
-                 $('.myteam-dropdown-box-prj_off').find('.myteam-seacrh-box-project').show()
-                 $('.myteam-dropdown-box-prj_off').find('.myteam-contacts-userpicker-project-list').show()
-                 $('.myteam-dropdown-box-prj_off .off').addClass('on').removeClass('off')
-             }, 500)
-         }
-         else
-         {
-             //#### BLANK HTML
-             $('.myteam-dropdown-box-prj_off').find('ul.list').html('')
-             $('.myteam-dropdown-box-prj_off').find('.myteam-seacrh-box-project').hide()
-             $('.myteam-dropdown-box-prj_off').find('.myteam-contacts-userpicker-project-list').hide()
+        //      setTimeout(() => {
+        //          $('.myteam-dropdown-box-prj_off').find('.myteam-seacrh-box-project').show()
+        //          $('.myteam-dropdown-box-prj_off').find('.myteam-contacts-userpicker-project-list').show()
+        //          $('.myteam-dropdown-box-prj_off .off').addClass('on').removeClass('off')
+        //      }, 500)
+        //  }
+        //  else
+        //  {
+        //      //#### BLANK HTML
+        //      $('.myteam-dropdown-box-prj_off').find('ul.list').html('')
+        //      $('.myteam-dropdown-box-prj_off').find('.myteam-seacrh-box-project').hide()
+        //      $('.myteam-dropdown-box-prj_off').find('.myteam-contacts-userpicker-project-list').hide()
 
-             if($('.myteam-dropdown-box-prj_off span').hasClass('on')){
-                 $('.myteam-dropdown-box-prj_off span.on').addClass('off').removeClass('on')
-             }
-         }
+        //      if($('.myteam-dropdown-box-prj_off span').hasClass('on')){
+        //          $('.myteam-dropdown-box-prj_off span.on').addClass('off').removeClass('on')
+        //      }
+        //  }
      })
 
     //#### SAVE THE COMMENT

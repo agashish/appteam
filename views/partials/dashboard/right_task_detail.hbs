@@ -3,7 +3,15 @@
                                     <div class="card-image waves-effect waves-block waves-light">
                                         <img class="activator" src="/images/user-bg.jpg" alt="user background">
                                         <div class="a_task" >{{taskDetail.task_name}}</div>
-                                        <div class="add_project_task"><a href="#"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Add to folder/project</a></div>
+                                        <div class="add_project_task chs-tsk-dls-prj-nm">
+                                            <div class="my_team_add_project" data-tp-dflt="">
+                                                
+                                            </div>
+                                            <a href="javascript:void(0)" class="chs-tsk-dls-prj-nm-anchor" data-task-id="{{taskDetail._id}}">
+                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add to folder/project
+                                            </a>
+                                            <div id="projectListShown"></div>
+                                        </div>
                                         <div class="add_attach_task">
                                         	<ul>
                                             	<li><a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i> Attach files</a></li>
@@ -29,11 +37,9 @@
                                         	
                                         </div>
                                         <div class="col s9 m9">
-                                        	<div class="my_team_add_team">
-                                            <img src="/images/yuna.jpg" alt="" class="circle responsive-img">
-                                            <span>Ashutosh Kumar</span>
-                                            </div>
-                                            
+                                            <ul class="my_team_add_team">
+                                                {{> dashboard/assign_user_list}}                                                                                            
+                                            </ul>                                            
                                             <div class="my_team_plus"><a href="javascript:void(0)"><i class="fa fa-plus" aria-hidden="true"></i></a></div>
                                             <div id="users"></div>
                                         

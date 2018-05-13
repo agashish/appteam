@@ -103,13 +103,6 @@ let refereshAssignUserList = (ajaxOptionObject , response) => {
     if(ajaxOptionObject.refereshAssignUserList == true) {
         //#### ADD NEW REFRESH DATA
         $(ajaxOptionObject.domElem+ajaxOptionObject.selector+ajaxOptionObject.responseBack).html(response)
-
-        //USE DEFAULT TO HIDE DROPDOWN OF NON-ASSIGN USER LIST
-        //#### BLANK HTML
-        $('.myteam-dropdown-box').find('ul.list').html('')
-        $('.myteam-dropdown-box').find('.myteam-seacrh-box').hide()
-        $('.myteam-dropdown-box').find('.myteam-contacts-userpicker').hide()
-        $('.myteam-dropdown-box .on').addClass('off').removeClass('on')
     }
 }
 
@@ -143,6 +136,7 @@ let searchRefresh = (ajaxOptionObject , response) => {
 let nonAssgnProjects = (ajaxOptionObject , response) => {
     if(ajaxOptionObject.nonAssgnProjects == true) {
         //#### ADD NEW REFRESH DATA
+        alert(ajaxOptionObject.domElem+ajaxOptionObject.selector+ajaxOptionObject.responseBack)
         $(ajaxOptionObject.domElem+ajaxOptionObject.selector+ajaxOptionObject.responseBack).html(response)
         //console.log('Waiting for response tick into editor area but will do later')
     }

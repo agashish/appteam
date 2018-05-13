@@ -45,7 +45,11 @@ const userSchema = mongoose.Schema({
     token: {
         type: String
     },
-    _id: mongoose.Schema.Types.ObjectId
+    _id: mongoose.Schema.Types.ObjectId,
+    status: {
+        type: Number,
+        default: 0
+    }
 })
 
 //#### NEW MIDDLEWARE FOR SAVING AND CREATING HASH FOR GIVEN PASSWORD
@@ -143,6 +147,32 @@ userSchema.statics.getUserList = function(cb) {
         return cb(null, user)
     })
 }
+
+
+userSchema.statics.getAssignUserList = function(taskId , cb) {
+    var user = this
+
+    const {AssignUser} = require('./usser_assign')
+
+    AssignUser.find({task: taskId}).select({"user": 1, "_id": 0}).exec((err, users) =>{
+
+        if(err){
+            return cb(err)
+        }
+
+        //conversion
+        userList = users.map(function(doc) { return doc.user; });
+
+        //#### FIND REST NON ASSIGN USER
+        user.find().where('_id').nin(userList).exec((err, user) => {
+
+            if(err){
+                return cb(err)
+            }
+            return cb(null, user)
+        })
+    })
+}   
 
 //#### CREATE MODEL CONSTRUCTOR
 const User = mongoose.model('User', userSchema)

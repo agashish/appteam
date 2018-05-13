@@ -58,23 +58,11 @@ const  {Category} = require('./models/category')
 const {Project} = require('./models/project')
 const {Task} = require('./models/task')
 const {Notes} = require('./models/notes')
+const {AssignUser} = require('./models/usser_assign')
+const {AssignProject} = require('./models/project_assign')
 
 //#### MOST IMPORTAN NOTE ####################
 // As Neil mentioned in the comments, Mongoose will automatically convert strings to ObjectIds when appropriate. However, the root cause of your problem is that you're using the wrong ObjectId class. Mongoose actually provides two different classes with the same name:
-// mongoose.Schema.Types.ObjectId
-// mongoose.Types.ObjectId
-// You should use the first one when defining schemas and the second one when explicitly creating ObjectIds for queries. Replacing the one line where you define ObjectId fixes your code:
-
-// var mongoose = require('mongoose');
-// var ObjectId = mongoose.Types.ObjectId;
-
-// //Here I have req.query.where: "591f47d10d957323386f0c42".
-// var qrySearch={"_id": new ObjectId(req.query.where)};
-//     Ag_escalaatendimento.find(qrySearch)
-//     .exec( (err,data) => {
-//        callback(err,data,res)
-//     })
-// });As Neil mentioned in the comments, Mongoose will automatically convert strings to ObjectIds when appropriate. However, the root cause of your problem is that you're using the wrong ObjectId class. Mongoose actually provides two different classes with the same name:
 // mongoose.Schema.Types.ObjectId
 // mongoose.Types.ObjectId
 // You should use the first one when defining schemas and the second one when explicitly creating ObjectIds for queries. Replacing the one line where you define ObjectId fixes your code:
@@ -470,8 +458,8 @@ app.post('/dashboard/tasks/detail', auth ,  (req, res) => {
 
         if(err){
             return res.status(400).send(err)
-        }            
-
+        } 
+        
         //#### GET ALL NOTES ACCORDING TO TASK_ID
         Notes.find({
                 'task':req.body.id,
@@ -481,13 +469,21 @@ app.post('/dashboard/tasks/detail', auth ,  (req, res) => {
         )
         .exec((err, notes) => {
 
-            //#### SET THE VIEW OF TASK DETAIL PAGE
-            res.render('dashboard/tasks/task_detail', {
-                layout: null,
-                taskDetail,
-                notes: false,
-                noteList: notes,
-                user: req.user
+            //#### Assign User List
+            AssignUser.find({task: req.body.id}).populate('user').exec((err, assign) =>{
+                if(err) {
+                    return res.status(400).send(err)                        
+                }
+
+                //#### SET THE VIEW OF TASK DETAIL PAGE
+                res.render('dashboard/tasks/task_detail', {
+                    layout: null,
+                    taskDetail,
+                    notes: false,
+                    noteList: notes,
+                    user: req.user,
+                    assignUserData: assign
+                })
             })
         })
     })
@@ -499,7 +495,6 @@ app.post('/dashboard/tasks/detail/date/update', auth ,  (req, res) => {
     if(!req.user) {
         return res.redirect('/login')
     }
-
     Task.findById({'_id':req.body.task_id}, (err, task) => {
         
         if(err){
@@ -608,18 +603,18 @@ app.post('/dashboard/assign/user/list' , auth , (req, res) => {
     }
 
     //#### GET ID FROM HEADER
-    const id = req.header('X-TSK-ID')
-
+    const task_id = req.header('X-TSK-ID')
+     
     // Notes.find().populate('task').exec((err, notes) =>{
     //     return res.status(200).send(notes)
     // })
 
     //#### GET USER LIST
-    User.getUserList((err, users) => {
+    User.getAssignUserList(task_id , (err, users) => {
         if(err){
             return res.status(400).send(err)
         }
-        
+
         res.removeHeader('Transfer-Encoding');
         res.removeHeader('X-Powered-By');
         res.render('dashboard/user_list/user_list', {
@@ -647,6 +642,68 @@ app.post('/dashboard/assign/user/task', auth, (req, res) => {
     res.removeHeader('X-Powered-By');
     res.removeHeader('X-TSK-ID');
 
+    const assignUser = new AssignUser({
+        _id: mongoose.Types.ObjectId(),
+        user: req.body.id,
+        task: req.body.task_id,
+        user_id: req.user._id
+    })
+
+    assignUser.save((err, save) =>{
+
+        if(err){
+            return res.status(400).send({message: err, status:400})
+        }
+
+        res.status(200).send({message:'User assigned', status: 200})
+    })
+
+})
+
+//####################################################
+    //#### LIST OF NON ASSIGN USER
+//####################################################
+app.post('/dashboard/assigned/user/list', auth, (req, res) => {
+
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+
+    //#### LIST OF NON ASSIGN USER QUERY
+    AssignUser.find({task: req.header('X-TSK-ID')}).populate('user').exec((err, assign) =>{
+
+        if(err) {
+            return res.status(400).send(err)                        
+        }
+
+        //#### SET THE VIEW OF TASK DETAIL PAGE
+        res.render('dashboard/assign_user_list/assign_user_list', {
+            layout: null,
+            assignUserData: assign
+        })
+    })
+})
+
+//####################################################
+    //#### LIST OF NON ASSIGN PROJECT
+//####################################################
+app.post('/dashboard/task/project/list' , auth, (req, res) => {
+
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+
+    Project.getAssignProjectList(req.header('X-TSK-ID') , (err , nonAssignProjects) => {
+
+        if(err) {
+            return res.status(400).send(err)
+        }
+
+        res.render('dashboard/project_list/project_list' , {
+            layout: null,
+            nonAssignProjects: nonAssignProjects
+        })
+    })
 })
 
 //#### LISTENING THE SERVER PORT

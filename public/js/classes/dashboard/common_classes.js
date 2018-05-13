@@ -598,8 +598,7 @@ class CommonFunctionClass extends CustomWork {
         }
 
         var getTaskResponse = sendData(assignUserData, funcOptionsUser)
-        alert(getTaskResponse)
-        //this.refreshAssignUserListToTask(getTaskResponse)
+        this.refreshAssignUserListToTask( getTaskResponse)
 
     }
 
@@ -808,10 +807,14 @@ class CommonFunctionClass extends CustomWork {
 
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         //grab all fields values and arrange to send to serve by our controller
-
-        const taskData = {
-            id: ref.attr('data-task-id')
-        }
+        const taskData = null
+        
+        //#### SET HEADER WITH SOME VALUES
+        $.ajaxSetup({
+            headers: {
+                'X-TSK-ID': $('.myteam-task-details-up .card').data('tsk-id')
+            }
+        });
 
         //function options for common ajax
         const funcOptionsUserList = {
@@ -821,7 +824,7 @@ class CommonFunctionClass extends CustomWork {
             beforeSend: false,
             contentType: '',
             data: true,
-            responseBack: 'projectList',
+            responseBack: 'projectListShown',
             selector: '#', // . | #
             domElem: '', //span , div, etc
             domManipulation: false,
@@ -864,18 +867,23 @@ class CommonFunctionClass extends CustomWork {
             domManipulation: false,
             ajaxModel: false
         }
-
+   
         var response = sendData(assignedUserID,funcDeleteAssignedUserDelete)
         this.refreshAssignUserListToTask(response)
     }
 
     //#### REFRESH ASSIGN USER LIST
     refreshAssignUserListToTask(getTaskResponse) {
-        //#### GET THE USER LIST
+     
         //#### ADD HTML TYPE TO SET THE DATA AGAIN
-        const TaskDataList = {
-            task_id: $('div.my_team_add_team').attr('data-tt-dflt')
-        }
+        const TaskDataList = null
+
+        //#### SET HEADER WITH SOME VALUES
+        $.ajaxSetup({
+            headers: {
+                'X-TSK-ID': $('.myteam-task-details-up .card').data('tsk-id')
+            }
+        });
 
         //function options for common ajax
         const funcOptionsUserList = {
@@ -897,7 +905,7 @@ class CommonFunctionClass extends CustomWork {
             },
             modelDom: {},
             ajaxModel: false,
-            taskList: true,
+            taskList: false,
             refereshAssignUserList: true
         }
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const projectSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     name: {
         type: String,
         require: true,
@@ -23,6 +24,31 @@ projectSchema.statics.projectList = function (cb) {
         return cb(null, list)
     })
 }
+
+projectSchema.statics.getAssignProjectList = function(taskId , cb) {
+    var project = this
+
+    const {AssignProject} = require('./project_assign')
+
+    AssignProject.find({task: taskId}).select({"project": 1, "_id": 0}).exec((err, projects) =>{
+
+        if(err){
+            return cb(err)
+        }
+
+        //conversion
+        projectList = projects.map(function(doc) { return doc.project; });
+
+        //#### FIND REST NON ASSIGN USER
+        project.find({'status':1}).where('_id').nin(projectList).exec((err, prjList) => {
+
+            if(err){
+                return cb(err)
+            }
+            return cb(null, prjList)
+        })
+    })
+} 
 
 const Project = mongoose.model('Project' , projectSchema)
 
