@@ -365,6 +365,7 @@ app.post('/dashboard/add/project', auth, (req, res) => {
     }
 
     const project = new Project({
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name
     })
 
