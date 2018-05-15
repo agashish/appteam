@@ -42,7 +42,8 @@ const taskSchema = mongoose.Schema({
         default: '00-00-0000'
     },
     description: {
-        type: String
+        type: String,
+        default: ''
     },
     _id: mongoose.Schema.Types.ObjectId,
     user:{

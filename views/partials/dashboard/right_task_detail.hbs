@@ -81,7 +81,8 @@
 									<div class="row">
 										<div class="nopadding">
 											{{!-- <textarea id="txtEditor"></textarea>  --}}
-                                            <textarea name="description" class="form-control ckeditor" id="description"></textarea>
+                                            {{!-- <textarea name="description" class="form-control ckeditor" id="description"></textarea> --}}
+                                            <div id="summernote">{{{taskDetail.description}}}</div>
 										</div>
 									</div>
 									<!-- Text Editor End Here -->
@@ -108,29 +109,6 @@
 								</div>
                                 </div>
                            
-
-<script>
-  $(document).ready(function() {
-    /*$("#txtEditor").Editor();    
-    if($("div.Editor-container").size() > 1)
-    $("div.Editor-container:first").remove()*/
-
-    /*try {
-        CKEDITOR.instances['description'].destroy(true);
-    } catch (e) { }
-    CKEDITOR.replace('description');
-
-    //#### SELECT NON ASSIGN USER FOR TASK
-    CKEDITOR.instances['description'].on( 'change', function(e){
-
-        var value = encodeURIComponent(CKEDITOR.instances['description'].getData());
-        setTimeout(() => { (new CommonFunctionClass()).requestUpdateDescriptionByTaskId(value) }, 800)
-
-    });*/
-    
-  });
-</script> 
-
 <script type="text/javascript">
   $(function() {
 
@@ -155,3 +133,37 @@
 
   });
   </script>
+   
+  <script>
+    $(document).ready(function(){
+        $('#summernote').summernote({
+            toolbar: [
+                ['style', ['bold', 'italic', 'underline']],
+                ['font', ['strikethrough']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']]
+            ],
+            placeholder: 'Text Here',
+            tabsize: 2,
+            height: 250
+        });
+
+        // summernote.change
+        $('#summernote').on('summernote.change', function(we, contents, $editable) {
+
+            //#### UPDATE DATE TO TASK < IF NEED
+            setTimeout(() => { (new CommonFunctionClass()).requestUpdateDescriptionByTaskId(); return false; }, 800)
+            
+        });
+
+        /*// summernote.change
+        $('#summernote').on('summernote.blur', function(we, contents, $editable) {
+
+            //#### UPDATE DATE TO TASK < IF NEED
+            setTimeout(() => { (new CommonFunctionClass()).requestUpdateDescriptionByTaskId(); return false; }, 800)
+            
+        });*/
+
+    })     
+ </script>

@@ -729,12 +729,9 @@ class CommonFunctionClass extends CustomWork {
         //#### INVOKE SEND DATA THROUGH DEFAULT OPTIONS
         const taskData = JSON.stringify({
             id: $('.myteam-task-details-up .card').data('tsk-id'),
-            description: $("#txtEditor").Editor('getText')
+            description: $('#summernote').summernote('code')
         })
 
-        alert($("#txtEditor").Editor('getText'))
-        return false
-        
         //function options for common ajax
         const funcOptions = {
             url: '/dashboard/task/add-update/comment',
