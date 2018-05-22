@@ -28,6 +28,10 @@ const assignUserSchema = mongoose.Schema({
     created_time: {
         type: String,
         default: moment().format('h:mm:ss a')
+    },
+    is_deleted:{
+        type: Number,
+        default: '0'
     }
 })
 

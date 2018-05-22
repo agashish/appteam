@@ -7,6 +7,12 @@ const mongoose = require('mongoose')
 const hbs = require('express-handlebars')
 const path = require('path')
 const partials = require('express-partial')
+const Handlebars = require('handlebars')
+const hbsAsync = require('express-hbs')
+var async = require('async');
+const multer = require('multer')
+
+//#### FOR TIME
 
 //#### INVOKE DEFAULT PROCESS
 const config = require('./config/config').get(process.env.NODE_ENV)
@@ -60,6 +66,20 @@ const {Task} = require('./models/task')
 const {Notes} = require('./models/notes')
 const {AssignUser} = require('./models/usser_assign')
 const {AssignProject} = require('./models/project_assign')
+
+Handlebars.registerHelper('login', function() {
+    return 'coaa cola'
+})
+
+//#### MULTER DISKSTORAGE
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'media/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${file.fieldname}_${Date.now()}_${file.originalname}`)
+    }
+})
 
 //#### MOST IMPORTAN NOTE ####################
 // As Neil mentioned in the comments, Mongoose will automatically convert strings to ObjectIds when appropriate. However, the root cause of your problem is that you're using the wrong ObjectId class. Mongoose actually provides two different classes with the same name:
@@ -136,6 +156,18 @@ app.get('/dashboard' , auth, (req, res) => {
                     req.project = {}
                 }
                 req.project = project
+
+                // Task.find({}).populate("user").exec(function(err,data) {
+                //     if (err) return handleError(err);
+                
+                //     //console.log(data)
+                //     async.forEach(data,function(item,callback) {
+                //         AssignUser
+                //     }, function(err) {
+                //         res.json(data);
+                //     });
+                
+                // });
 
                 //#### SET TASK LISTS DEFAULT INTO MIDDLE
                 Task.getTaskList((err, tasks) => {
@@ -328,6 +360,55 @@ app.post('/dashboard/add/category' , auth , (req, res) => {
         }
 
         res.status(200).send({message:'Category added', status: 200})
+    })
+})
+
+//#### UPLOAD MEDIA IN SINGLE SHOT
+app.post('/dashboard/model/form/attachment' , auth , (req , res) => {
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+    res.render('dashboard/includes/show_attachment_modal' , {
+        layout: null
+    })
+})
+
+//#### SEND MEDIA DATA TO SERVER
+app.post('/api/uploads', auth, (req, res) => {
+
+    if(!req.user) {
+        return res.redirect('/login')
+    }
+
+    //#### MULTER INIT AND VALIDATIONS
+    const upload = multer({
+        //dest: 'media/',
+        storage,
+        limits: {
+            fileSize: 5000000
+        },
+        fileFilter: (req, file, cb) => {
+            
+            const ext = path.extname(file.originalname)
+
+            if(ext !== ".jpg"){
+                return cb(res.status(400).send({message: 'Only jpg is allowed', status: 400}), false)
+            }
+            cb(null, true)
+            
+        }
+    }).fields([
+        {name:'image', maxCount: 2},
+        {name:'image2', maxCount: 10}
+    ])
+    
+    //#### UPLOAD MEDIA NOW
+    upload(req, res, (err) => {
+        if(err) {
+            return res.status(400).send({message: 'Only images are allowed', status: 400})
+        }
+
+        return res.status(200).send({message: 'Media Uploaded', status: 200})
     })
 })
 

@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 const categorySchema = mongoose.Schema({
+    category_id:{
+        type: String,
+        default: '0'
+    },
     category_name: {
         type: String,
         require: true,

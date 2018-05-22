@@ -15,6 +15,7 @@ module.exports = {
         app.engine('hbs' , hbs({
             extname: 'hbs',
             defaultLayout: 'main',
+            helpers: require('./../../../helpers/helper'),
             layoutsDir: __dirname + './../../../views/layout',
             partialsDir: __dirname + './../../../views/partials'
         }))

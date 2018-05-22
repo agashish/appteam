@@ -4,6 +4,10 @@ const jwt = require('jsonwebtoken')
 const config = require('./../config/config').get(process.env.NODE_ENV)
 const SALT_I = 10
 const userSchema = mongoose.Schema({
+    team_id: {
+        type: String,
+        default: '0'
+    },
     firstname: {
         type: String,
         require: true,

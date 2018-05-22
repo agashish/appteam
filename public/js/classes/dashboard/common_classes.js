@@ -264,6 +264,65 @@ class CommonFunctionClass extends CustomWork {
 
     }
 
+    //#### OPEN MODAL FOR ATTACHMENT UPLOADING
+    openAttachmentModal() {
+
+        //grab all fields values and arrange to send to serve by our controller
+        const userData = null
+
+        //function options for common ajax
+        const funcOptions = {
+            url: '/dashboard/model/form/attachment',
+            type: 'post',
+            dataType: 'html',
+            beforeSend: false,
+            contentType: '',
+            data: false,
+            responseBack: 'modal-content',
+            selector: '.', // . | #
+            domElem: '', //span , div, etc
+            responseElem: {
+                domElem: {},
+                domSelector: {}
+            },
+            modelDom: {
+                modelDomTitle: '#attachmentModalLabel',
+                modelDomContent: '.modal-content',
+                modelDomTitleText: 'Upload Media'
+            },
+            ajaxModel: true
+        }
+
+        //######## CALL AJAX COMMON FUNCTION TO SEND AND RETREIVE RESPONSES
+        //params : data
+        //params : func
+        //params : cb
+        sendData(userData, funcOptions, (err, response) => {
+
+            //#### BEFORE TRIGGER AJAX, FLUSH HTML IF IT WAS BEFORE ADDED
+            $('.modal-content').html()
+            $('#attachmentModalLabel').html()
+
+            if(err) {
+                $('#attachmentModalLabel').html('Error occurred ... ')
+                $('.modal-content').html(err)
+            }
+
+            //######## CALL AJAX COMMON FUNCTION TO SEND AND RETREIVE RESPONSES
+            //params : data
+            //params : func
+            sendData(userData, funcOptions)
+
+        })
+    }
+
+    //#### SAVE MEDIA
+    saveMedia(formData) {
+
+        console.log(formData)
+
+    }
+
     openProjectModal() {
 
         //grab all fields values and arrange to send to serve by our controller

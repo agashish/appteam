@@ -58,6 +58,49 @@ $(function(){
     })
 
     //############# CALL DYNAMIC BLADE CONTENT INTO MODAL BOX
+    $( document ).on('click', '.media_create', function(){
+
+        //#### JUST MAKE THE REQUEST TO OPEN MOADL BOX FOR CATEGORY POPUP
+        (new CommonFunctionClass()).openAttachmentModal()
+
+    })
+
+    //#### GET MEDIA FILE AFTER CHOOSEN
+    $(document).on('submit' , '#form_upload', function(evt){        
+        evt.preventDefault();
+        
+        var formData = new FormData($(this)[0])
+
+        $.ajax({
+            url: '/api/uploads',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            processData: false,
+            success: function(response) {
+
+                // const resp = JSON.parse(response)
+                // alert(resp.status)
+                // return false
+
+                // if( parseInt(resp.status) == 200 ) {
+                //     $('.close').click()
+                //     Materialize.toast('<span>'+resp.message+'</span>', 1500);
+                // } else {
+                //     Materialize.toast('<span>'+resp.message+'</span>', 1500);
+                // }        
+                
+                Materialize.toast('<span>Media Uploaded</span>', 1500);
+            }
+        })
+
+        //(new CommonFunctionClass()).saveMedia(new FormData($(this)[0]))
+    })
+
+    //############# CALL DYNAMIC BLADE CONTENT INTO MODAL BOX
     $( document ).on('click', '.project_create', function(){
         (new CommonFunctionClass()).openProjectModal()        
     })

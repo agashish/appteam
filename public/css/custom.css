@@ -1,0 +1,66 @@
+nav ul a { padding: 0 10px; }
+.row .col.s9 { margin-left: 15px; }
+.my_team_image img {
+    max-width: 40px;
+}  custom.min.css
+.col.s1.m1.collapsible-header {
+    width: 5%;
+    font-size: 20px;
+    padding-top: 25px;
+}
+#content .container .row {
+    margin-bottom: 2px;
+}
+.row .col.s11 { margin-left:15px;}
+
+.my_team_add_team span {
+    padding-top: 25px;
+    padding-left: 10px;
+    font-size: 13px;
+    float: left;
+    padding-right: 10px;
+}
+.my_team_add_team span {
+    padding-top: 25px;
+    padding-left: 45px;
+    font-size: 13px;
+    float: left;
+}
+
+.my_team_add_team img {
+    width: 36px;
+    margin-top: 15px;
+    float: left;
+    position: relative;
+    z-index: 99;
+    margin-right: 0px;
+}
+.team-ntt-shw-hre {
+    height: 40vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.start_date {
+    font-size: 13px;
+    padding-top: 15px !important;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+    padding-left: 25px!important;
+}
+
+.start_date {
+    font-size: 13px;
+    padding-top: 0px !important;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+    padding-left: 5px!important;
+}
+.my_team_list .card-panel {
+    margin: 0px;
+    box-shadow: none;
+    background-color: #c7e4f1 !important;
+    border-radius: 0px;
+    padding: 7px;
+}

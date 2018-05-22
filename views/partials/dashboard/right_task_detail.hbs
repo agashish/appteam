@@ -8,14 +8,14 @@
                                                 
                                             </div>
                                             <a href="javascript:void(0)" class="chs-tsk-dls-prj-nm-anchor" data-task-id="{{taskDetail._id}}">
-                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add to folder/project
+                                                <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add to project
                                             </a>
                                             <div id="projectListShown"></div>
                                         </div>
                                         <div class="add_attach_task">
                                         	<ul>
                                             	<li><a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i> Attach files</a></li>
-                                                <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Shared with 1 group and 1 person</a></li>
+                                                {{!-- <li><a href="#"><i class="fa fa-share-alt" aria-hidden="true"></i> Shared with 1 group and 1 person</a></li> --}}
                                         	</ul>
                                         </div>
                                     </div>
@@ -53,6 +53,7 @@
                                     
                                     <div class="row my_team_date" >
                                     	<div class="col s4 m4">
+                                            
                                           <input type="text" name="datefilter" data-date-id="date_id" value="{{taskDetail.fromDate}} -{{taskDetail.toDate}}" />    
                                           
                                       </div> 
@@ -100,7 +101,9 @@
                                 <div class="row">
                                 	<div class="col s12 m12 my_team_send_box">
 										 <form action="">
-                                         	  <div class="my_team_attach"><a href="#"><i class="fa fa-paperclip" aria-hidden="true"></i></a></div>
+                                         	  <div class="my_team_attach">
+                                                   <a href="javascript:void(0)" type="button" class="media_create" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-paperclip" aria-hidden="true"></i></a>                                                   
+                                                </div>
                                               <textarea class="form-control textarea-control team-sv-ntt" rows="3" placeholder="Textarea with emoji image input" data-emojiable="true"></textarea>
                                               <button type="submit" form="form1" value="Submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                                          </form> 
