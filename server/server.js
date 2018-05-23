@@ -1,16 +1,16 @@
 //#### LOAD MODULES
-const express = require('express')
-const moment = require('moment')
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
-const mongoose = require('mongoose')
-const hbs = require('express-handlebars')
-const path = require('path')
-const partials = require('express-partial')
-const Handlebars = require('handlebars')
-const hbsAsync = require('express-hbs')
-var async = require('async');
-const multer = require('multer')
+const express                   = require('express')
+const moment                    = require('moment')
+const bodyParser                = require('body-parser')
+const cookieParser              = require('cookie-parser')
+const mongoose                  = require('mongoose')
+const hbs                       = require('express-handlebars')
+const path                      = require('path')
+const partials                  = require('express-partial')
+const Handlebars                = require('handlebars')
+const hbsAsync                  = require('express-hbs')
+var async                       = require('async');
+const multer                    = require('multer')
 
 //#### FOR TIME
 
